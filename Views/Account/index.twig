@@ -1,0 +1,59 @@
+{% extends "Shared/_layout.twig" %}
+
+{% block title %}
+    Membership Login
+{% endblock %}
+
+{% block body %}
+<!-- Top content -->
+
+<div class="page-headline">
+    <div class="container">
+        <div class="col-lg-12"> Sign in to your account</div>
+    </div>
+</div>
+
+
+<div class="container" id="login-panel">
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-4 col-lg-5 col-lg-offset-3">
+            <div class="account-wall">
+                <img src="/assets/images/members-login.png" class="center-block" alt="" />
+
+                <div class="alert alert-danger round-corners-none margin-top-15 margin-bottom-5" v-cloak v-show="alert.error">
+                    {{ '{{ alert.message }}' }}
+                </div>
+
+                <form class="form-signin" id="form-signin" method="post" v-on:submit.prevent="dologin()">
+                    <input type="email" id="useremail" name="useremail" class="form-control" placeholder="Email" required autofocus v-model="useremail">
+                    <input type="password" id="userpassword" name="userpassword" class="form-control" placeholder="Password" required v-model="userpassword">
+                    <button class="btn btn-lg green white-text btn-block z-depth-1" type="submit">
+                        <i class="fa fa-sign-in margin-right-10"></i>
+                        Sign in
+                    </button>
+
+                </form>
+            </div>
+
+            <div class="text-center margin-top-10">
+                Forgot password? <a href="/account/forgotpassword">Please click here</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+
+{% block footer_scripts %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.1/vue.js" type="text/javascript" ></script>
+{#<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js" type="text/javascript"></script>#}
+{#<script src="/assets/js/vue.js" type="text/javascript"></script>#}
+<script src="/assets/js/vue/login/index.js" type="text/javascript"></script>
+
+{% endblock %}
+
+
+
+

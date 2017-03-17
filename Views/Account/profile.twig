@@ -1,0 +1,133 @@
+{% extends "Shared/_layout.twig" %}
+
+{% block title %}
+    Member Profile
+{% endblock %}
+
+{% block body %}
+
+    <div class="page-headline">
+        <div class="container">
+            <div class="col-lg-12">Member Profile</div>
+        </div>
+    </div>
+
+    <div class="container white z-depth-05">
+        <div class="row margin-top-40">
+            <div class="alert alert-danger round-corners-none margin-bottom-15" id="update_result">
+                <div id="update_message"></div>
+            </div>
+            {% if user_profile is not defined %}
+                <div class="alert alert-danger round-corners-none margin-top-15 margin-bottom-5">
+                    Please login to change your profile details
+                </div>
+            {% else %}
+                <div class="col-lg-2">
+                    {%  if user_profile.avatar_url is not null and user_profile.avatar_url is not empty %}
+                        <img src="{{ user_profile.avatar_url }}" alt="Please upload your image" class="img-responsive margin-left-10" />
+                    {% else %}
+                        <img src="/assets/images/avatar.jpg" alt="Please upload your image" class="img-responsive margin-left-10" />
+                    {% endif %}
+                </div>
+                <div class="col-lg-9">
+                    <form method="post" class="margin-bottom-40">
+
+                        <input type="hidden" id="csrf" value="{{ csrf }}" />
+
+                        <div class="form-group col-lg-6">
+                            <label for="fname">First Name</label>
+                            <input type="text" class="form-control no-border-radius" value="{{ user_profile.first_name }}" id="fname" placeholder="First Name">
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <label for="lname">Last Name</label>
+                            <input type="text" class="form-control no-border-radius" id="lname" value="{{ user_profile.last_name }}" placeholder="Last Name">
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <label for="email">Email</label>
+                            <div>{{ user_profile.email }}</div>
+                            {#<input type="email" class="form-control" id="email" disabled placeholder="email">#}
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control no-border-radius" id="password" placeholder="Leave empty if you don't want to update your password">
+                            {#<span id="helpBlock" class="help-block">Leave empty if you don't want to update your password</span>#}
+                        </div>
+                        <div class="form-group col-lg-12">
+                            <label for="avatar">Profile image</label>
+                            <input type="text" class="form-control no-border-radius" id="avatar_url" value="{{ user_profile.avatar_url }}" placeholder="Post a link to your online image">
+                        </div>
+                        <div class="form-group">
+                            <img src="/assets/images/ajax-loader.gif" id="loader" class="pull-right img-responsive margin-top-10 margin-right-10" />
+                            <button type="submit" class="btn green white-text pull-right z-depth-1 margin-right-15" id="btn_submit">
+                                <i class="fa fa-save margin-right-5"></i>
+                                Update
+                            </button>
+                        </div>
+                        <div class="clearfix"></div>
+                    </form>
+                </div>
+            {% endif %}
+
+        </div>
+    </div>
+{% endblock %}
+
+
+
+{% block footer_scripts %}
+    <script type="text/javascript">
+        (function(){
+
+            //hide update message update
+            $('#loader').hide();
+            $('#update_result').hide();
+
+            $('#btn_submit').click(function () {
+
+                //hide update panel
+                $('#loader').show();
+                $('#update_result').hide();
+
+                //aquire values
+                var csrf = $('#csrf').val();
+                var fname = $('#fname').val();
+                var lname = $('#lname').val();
+                var password = $('#password').val();
+                var avatar_url = $('#avatar_url').val();
+
+                //prepare data
+                var data = { csrf: csrf, fname: fname, lname: lname, password: password, avatar_url: avatar_url };
+                data = JSON.stringify(data); // $.param({ 'id': ticket_id });
+
+                //submit and save the information
+                $.ajax({
+                    url: "/account/changeprofile",
+                    method: "POST",
+                    data: data
+                }).done(function(result) {
+                    $('#update_message').text(result.message);
+                    if(result.is_success)
+                    {
+                        $('#update_result')
+                            .removeClass('alert-danger')
+                            .removeClass('alert-success')
+                            .addClass('alert-success')
+                            .show('slow');
+                    }
+                    else
+                    {
+                        $('#update_result')
+                                .removeClass('alert-danger')
+                                .removeClass('alert-success')
+                                .addClass('alert-danger')
+                                .show('slow');
+                    }
+                });
+
+                $('#loader').hide();
+                return false;
+            })
+
+        })();
+    </script>
+{% endblock %}

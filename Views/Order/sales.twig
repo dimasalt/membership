@@ -1,0 +1,16 @@
+{% extends "Shared/_layout_sales.twig" %}
+
+{% block title %} Meditation: A Complete Guide From A to Z {% endblock %}
+
+{% block header_block %}{% endblock %}
+
+{% block body %}
+
+    {% if page_info is defined %}
+        {{  page_info.sales_page_info | raw }}
+    {% endif %}
+
+{% endblock %}
+
+{% block footer_scripts %}{% endblock %}
+

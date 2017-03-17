@@ -1,0 +1,91 @@
+<?php
+/**
+ * *******************************************
+ * Accepts refund notifications from stripe
+ * code example: https://gist.github.com/boucher/1708172
+ * hooks: https://www.masteringmodernpayments.com/stripe-webhook-event-cheatsheet
+ * custom payment form: https://stripe.com/docs/custom-form
+ * *******************************************
+ */
+
+namespace Area\WebHooks;
+
+use Stripe\Stripe;
+use Membership\Libraries;
+
+
+class StripeHooks
+{
+    protected $log_file;
+    public function __construct()
+    {
+        $this->log_file = INC_ROOT . '/Logs/stripehooks.log';
+    }
+
+    public function Index()
+    {
+        ini_set("log_errors", 1);
+        ini_set("error_log", $this->log_file);
+
+        $config = include CONFIG_URL;
+        Stripe::setApiKey($config["stripe"]["secret_key"]);
+
+        // retrieve the request's body and parse it as JSON
+        $event_json = json_decode(file_get_contents('php://input'));
+
+        //error_log(date('[Y-m-d H:i e] '). "The object is: " . $event_json->data->object->id . PHP_EOL, 3, $this->log_file);
+
+        // for extra security, retrieve from the Stripe API
+        $event = \Stripe\Event::retrieve($event_json->id); //\Stripe\Event::retrieve($event_json->id);
+        // $event = Stripe_Event::retrieve($event_id);
+
+        error_log(date('[Y-m-d H:i e] '). "The object is: " . print_r($event, true) . PHP_EOL, 3, $this->log_file);
+
+
+        $contact_details =  [
+            "txn_id"                => isset($event_json->data->object->id) ? $event_json->data->object->id : "",
+            "payer_email"           => isset($event_json->data->object->metadata->email) ? $event_json->data->object->metadata->email : "",
+            "first_name"            => isset($event_json->data->object->source->name) ? $event_json->data->object->source->name : "",
+            "last_name"             => "",
+            "address_street"        => isset($event_json->data->object->source->address_line1) ? $event_json->data->object->source->address_line1 : "",
+            "address_city"          => isset($event_json->data->object->source->address_city) ? $event_json->data->object->source->address_city : "",
+            "address_state"         => isset($event_json->data->object->source->address_state) ? $event_json->data->object->source->address_state : "",
+            "address_country"       => isset($event_json->data->object->source->address_country) ? $event_json->data->object->source->address_country : "",
+            "address_zip"           => isset($event_json->data->object->source->address_zip) ? $event_json->data->object->source->address_zip : "",
+            "contact_phone"         => ""
+        ];
+
+
+        $payment_details =      array(
+            "txn_id"                => isset($event_json->data->object->id) ? $event_json->data->object->id : "",
+            "txn_type"              => isset($event_json->data->object->object) ? $event_json->data->object->object : "",
+            "payment_type"          => isset($event_json->type) ? $event_json->type : "",
+            "payment_status"        => isset($event_json->data->object->status) ? $event_json->data->object->status : "",
+            "payment_source"        => "Stripe", //where the payment came from //need for database record
+            "item_name"             => isset($event_json->data->object->description) ? $event_json->data->object->description : "",
+            "payment_amount"        => isset($event_json->data->object->amount) ? $event_json->data->object->amount /100 : "",
+            "date"                  => ""
+        );
+
+
+        // add order record
+        $ord = new Libraries\OrderLibrary();
+        $ord->PlaceOrder($contact_details, $payment_details);
+
+        // This will send receipts on succesful invoices
+        if ($event_json->type == 'charge.refunded' || $event_json->type == 'charge.dispute.created') {
+
+            //remove from membership and from program
+            $ac = new Libraries\MembershipLibrary();
+            $ac->RemoveUserFromProgram($event_json->data->object->metadata->email, $event_json->data->object->description );
+
+            //add to auto responder
+            $au = new Libraries\CRMLibrary();
+            $au->RemoveFromProgram($event_json->data->object->description, $event_json->data->object->metadata->email,$event_json->data->object->source->name, '');
+        }
+
+
+        //response with 200 everything is OK
+        http_response_code(200);
+    }
+}

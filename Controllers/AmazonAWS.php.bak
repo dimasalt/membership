@@ -1,0 +1,70 @@
+<?php
+/***
+ * Testing amazon AWS
+ */
+
+namespace Membership\Controllers;
+
+use Aws\S3\S3Client;
+use Aws\CloudFront\CloudFrontClient;
+
+//use Psr\Http\Message\RequestInterface;
+
+class AmazonAWS extends BaseController
+{
+    //main login page
+    public function Index($request, $response, $args)
+    {
+        $config = include CONFIG_URL;
+
+        $s3Client = new S3Client([
+            'version'     => '2006-03-01',
+            'region'      => 'us-east-1',
+            'credentials' => [
+                'key'    => $config['aws_s3']['key'],
+                'secret' => $config['aws_s3']['secret']
+            ]
+        ]);
+
+        $cmd = $s3Client->getCommand('GetObject', [
+            'Bucket' => $config['aws_s3']['bucket'],
+            'Key'    => 'instant anxiety relief/An Important Note.mp4'
+        ]);
+
+        $url = $s3Client->createPresignedRequest($cmd, '+1 minutes');
+
+        $presignedUrl = (string) $url->getUri();
+
+        var_dump($presignedUrl);
+
+        //return $this->getView()->render('Account/index.twig', array('login_page' => true));
+    }
+
+    //cloudfront
+    public function CloudFront($request, $response, $args){
+
+        $config = include CONFIG_URL;
+
+        $cloudFront = new CloudFrontClient([
+            'region'  => 'us-east-1',
+            'version' => '2014-11-06'
+        ]);
+
+        // Setup parameter values for the resource
+        $streamHostUrl = $config['aws_cloudfront']['url']; // https://d1kxu5yzl4taf2.cloudfront.net';
+        $resourceKey = 'instant anxiety relief/An Important Note.mp4';
+        $expires = time() + 120;
+
+        // Create a signed URL for the resource using the canned policy
+        $signedUrlCannedPolicy = $cloudFront->getSignedUrl([
+            'url'         => $streamHostUrl . '/' . $resourceKey,
+            'expires'     => $expires,
+            'private_key' =>  $config['aws_cloudfront']['private_key'],
+            'key_pair_id' => $config['aws_cloudfront']['key_pair_id']
+        ]);
+
+
+        return $this->getView()->render('amazonaws/index.twig', array('video_url' => $signedUrlCannedPolicy));
+
+    }
+}

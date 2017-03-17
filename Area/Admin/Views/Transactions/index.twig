@@ -1,0 +1,175 @@
+{% extends "Shared/_layout.twig" %}
+
+ {% block header_scripts %}
+     <link rel="stylesheet" href="/Area/Admin/assets/css/checkbox.css" />
+     <link rel="stylesheet" href="/assets/elements/toastr/toastr.min.css" />
+ {% endblock %}
+
+ {% block body %}
+     <div class="right_col" role="main" id="logs_panel" v-cloak style="height: 96vh;">
+         {#<div class="">#}
+         <div class="page-title">
+             <div class="title_left">
+                 <h3>System</h3>
+             </div>
+
+             <div class="title_right">
+                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                     <div class="input-group">
+                         <input type="text" class="form-control" placeholder="Search for..." v-model="search_by">
+                         <span class="input-group-btn">
+                      <button class="btn btn-default" type="button" v-on:click="getLogs()">Go!</button>
+                    </span>
+                     </div>
+                 </div>
+             </div>
+         </div>
+
+         <div class="clearfix"></div>
+
+         <div class="row">
+             <div class="col-md-12 col-sm-12 col-xs-12">
+                 <div class="x_panel">
+                     <div class="x_title">
+                         <h2>Logs</h2>
+                         <ul class="nav navbar-right panel_toolbox">
+                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                             <li class="dropdown">
+                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-sort"></i></a>
+                                 <ul class="dropdown-menu" role="menu">
+                                     <li><a href="#" v-on:click="OrderBy('date')">Sort by date</a></li>
+                                     <li><a href="#" v-on:click="OrderBy('user')">Sort by user</a></li>
+                                     <li><a href="#" v-on:click="OrderBy('page')">Sort by page</a></li>
+                                 </ul>
+                             </li>
+                             <li class="dropdown">
+                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-trash"></i></a>
+                                 <ul class="dropdown-menu" role="menu">
+                                     <li><a href="#" v-on:click="removeSelectedModal()">Remove Selected</a></li>
+                                     <li><a href="#" v-on:click="removeAllModal()">Remove All</a></li>
+                                 </ul>
+                             </li>
+                             {#<li><a v-on:click="removeAll()"><i class="fa fa-trash"></i></a></li>#}
+                             <li><a class="close-link"><i class="fa fa-close"></i></a></li>
+                         </ul>
+                         <div class="clearfix"></div>
+                     </div>
+
+
+                     <div class="x_content">
+
+                         <div class="alert alert-success" role="alert" v-if="logs.length == 0">
+                             Sorry but there no logs at the moment
+                         </div>
+
+                         <div class="table-responsive" v-if="logs.length > 0">
+                             <table class="table table-striped jambo_table">
+                                 <thead>
+                                 <tr class="headings">
+                                     <th>
+                                         <input type="checkbox" id="c1" name="cc1" class="bulk_action" v-model="all_selected" v-on:change="checkAll()" />
+                                         <label for="c1"><span></span></label>
+                                     </th>
+                                     <th class="column-title">User </th>
+                                     <th class="column-title">Email </th>
+                                     <th class="column-title">Page </th>
+                                     <th class="column-title">Action </th>
+                                     <th class="column-title">IP </th>
+                                     <th class="column-title">Date </th>
+                                 </tr>
+                                 </thead>
+
+                                 <tbody>
+                                 <tr class="odd pointer" v-for="log in logs">
+                                     <td class="a-center ">
+                                         <input type="checkbox" :name="log.id" :id="log.id" v-model="log.selected" class="row_highlight" />
+                                         <label :for="log.id"><span></span></label>
+                                     </td>
+                                     <td class=" ">{{ '{{ log.first_name }} {{ log.last_name }}' }}</td>
+                                     <td class=" ">{{ '{{log.username}}' }}</td>
+                                     <td class=" ">{{ '{{ log.page }}' }} </td>
+                                     <td class=" ">{{ '{{ log.action }}' }} </td>
+                                     <td class=" ">{{ '{{ log.ip }}' }} </td>
+                                     <td class=" ">{{ '{{ log.created_at }}' }} </td>
+                                 </tr>
+                                 </tbody>
+                             </table>
+
+                             <!-- pagination for our table -->
+                             <nav aria-label="Page navigation" class="pull-right" v-if="page_count > 1">
+                                 <ul class="pagination" style="margin-top:0;">
+                                     <li>
+                                         <a href="#" aria-label="Previous" v-on:click="nextPage(page - 1)" v-if="page > 1">
+                                             <span aria-hidden="true">&laquo;</span>
+                                         </a>
+                                     </li>
+
+                                     <li v-for="n in page_count" v-bind:class="{ active : n == page }">
+                                         <span v-if="n == page">  {{ '{{ n }}' }} <span class="sr-only">(current)</span></span>
+
+                                         <a href="#" v-if="n != page" v-on:click="nextPage(n)">{{ '{{ n }}' }}</a>
+                                     </li>
+
+                                     <li>
+                                         <a href="#" aria-label="Next" v-on:click="nextPage(page + 1)" v-if="page < page_count">
+                                             <span aria-hidden="true">&raquo;</span>
+                                         </a>
+                                     </li>
+                                 </ul>
+                             </nav>
+
+                         </div>
+
+                     </div>
+                 </div>
+             </div>
+         </div>
+         {#</div>#}
+
+         <!-- remove logs modal -->
+         <div class="modal fade" tabindex="-1" role="dialog" id="logs_selected_modal">
+             <div class="modal-dialog" role="document">
+                 <div class="modal-content">
+                     <div class="modal-header" style="background-color: #E74C3C; color: #F2F1EF">
+                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                         <h4 class="modal-title">Logs Removal...</h4>
+                     </div>
+                     <div class="modal-body">
+                         <p>You are about to remove membership activity logs. Please confirm your action.&hellip;</p>
+                     </div>
+                     <div class="modal-footer">
+                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                         <button type="button" class="btn btn-primary" data-dismiss="modal" v-on:click="removeSelected()" style="background-color: #E74C3C; color: #F2F1EF; border: none;">Remove Logs</button>
+                     </div>
+                 </div><!-- /.modal-content -->
+             </div><!-- /.modal-dialog -->
+         </div><!-- /.modal -->
+
+         <!-- remove logs modal -->
+         <div class="modal fade" tabindex="-1" role="dialog" id="logs_modal">
+             <div class="modal-dialog" role="document">
+                 <div class="modal-content">
+                     <div class="modal-header" style="background-color: #E74C3C; color: #F2F1EF">
+                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                         <h4 class="modal-title">Logs Removal...</h4>
+                     </div>
+                     <div class="modal-body">
+                         <p>You are about to remove membership activity logs. Please confirm your action.&hellip;</p>
+                     </div>
+                     <div class="modal-footer">
+                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                         <button type="button" class="btn btn-primary" data-dismiss="modal" v-on:click="removeAll()" style="background-color: #E74C3C; color: #F2F1EF; border: none;">Remove Logs</button>
+                     </div>
+                 </div><!-- /.modal-content -->
+             </div><!-- /.modal-dialog -->
+         </div><!-- /.modal -->
+     </div>
+ {% endblock %}
+
+ {% block footer_scripts %}
+
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.1/vue.js" type="text/javascript" ></script>
+     <script src="/Area/Admin/assets/js/vuejs/transactions/index.js"></script>
+
+     <script src="/assets/elements/toastr/toastr.min.js"></script>
+ {% endblock %}

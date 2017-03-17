@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<!-- saved from url=(0087)https://geildanke.com/blog/how-to-test-jvzoo-integration-with-jvzipn-test-data-postman/ -->
+<html lang="en-US" class="gr__geildanke_com"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <meta name="earnify-site-verification" content="fd50243659b3658dc906ebc9ed241f3a6d61cbc3">
+	<title>How to test your JVZoo integration with JVZIPN test data and Postman | </title>
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="pingback" href="https://geildanke.com/blog/xmlrpc.php">
+	<!--[if lt IE 9]>
+	<script src="https://geildanke.com/blog/wp-content/themes/yoko/js/html5.js" type="text/javascript"></script>
+	<![endif]-->
+	<title>How to test your JVZoo integration with JVZIPN test data and Postman – Geil,Danke! Blog</title>
+<link rel="alternate" type="application/rss+xml" title="Geil,Danke! Blog » Feed" href="https://geildanke.com/blog/feed/">
+<link rel="alternate" type="application/rss+xml" title="Geil,Danke! Blog » Comments Feed" href="https://geildanke.com/blog/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="Geil,Danke! Blog » How to test your JVZoo integration with JVZIPN test data and Postman Comments Feed" href="https://geildanke.com/blog/how-to-test-jvzoo-integration-with-jvzipn-test-data-postman/feed/">
+		<script type="text/javascript" async="" src="./How to test your JVZoo integration with JVZIPN test data and Postman __files/ga.js"></script><script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/72x72\/","ext":".png","source":{"concatemoji":"https:\/\/geildanke.com\/blog\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.4.5"}};
+			!function(a,b,c){function d(a){var c,d,e,f=b.createElement("canvas"),g=f.getContext&&f.getContext("2d"),h=String.fromCharCode;return g&&g.fillText?(g.textBaseline="top",g.font="600 32px Arial","flag"===a?(g.fillText(h(55356,56806,55356,56826),0,0),f.toDataURL().length>3e3):"diversity"===a?(g.fillText(h(55356,57221),0,0),c=g.getImageData(16,16,1,1).data,g.fillText(h(55356,57221,55356,57343),0,0),c=g.getImageData(16,16,1,1).data,e=c[0]+","+c[1]+","+c[2]+","+c[3],d!==e):("simple"===a?g.fillText(h(55357,56835),0,0):g.fillText(h(55356,57135),0,0),0!==g.getImageData(16,16,1,1).data[0])):!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g;c.supports={simple:d("simple"),flag:d("flag"),unicode8:d("unicode8"),diversity:d("diversity")},c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.simple&&c.supports.flag&&c.supports.unicode8&&c.supports.diversity||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script><script src="./How to test your JVZoo integration with JVZIPN test data and Postman __files/wp-emoji-release.min.js" type="text/javascript"></script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel="stylesheet" id="yoko-fonts-css" href="./How to test your JVZoo integration with JVZIPN test data and Postman __files/css" type="text/css" media="all">
+<link rel="stylesheet" id="yoko-style-css" href="./How to test your JVZoo integration with JVZIPN test data and Postman __files/style.css" type="text/css" media="all">
+<script type="text/javascript" src="./How to test your JVZoo integration with JVZIPN test data and Postman __files/jquery.js"></script>
+<script type="text/javascript" src="./How to test your JVZoo integration with JVZIPN test data and Postman __files/jquery-migrate.min.js"></script>
+<link rel="https://api.w.org/" href="https://geildanke.com/blog/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://geildanke.com/blog/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://geildanke.com/blog/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="iOS 9 ohne Zeitungskiosk aber mit News-App" href="https://geildanke.com/blog/ios-9-ohne-zeitungskiosk-aber-mit-news-app/">
+<link rel="shortlink" href="https://geildanke.com/blog/?p=1682">
+<link rel="alternate" type="application/json+oembed" href="https://geildanke.com/blog/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fgeildanke.com%2Fblog%2Fhow-to-test-jvzoo-integration-with-jvzipn-test-data-postman%2F">
+<link rel="alternate" type="text/xml+oembed" href="https://geildanke.com/blog/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fgeildanke.com%2Fblog%2Fhow-to-test-jvzoo-integration-with-jvzipn-test-data-postman%2F&amp;format=xml">
+<style type="text/css">.rp4wp-related-posts ul{width:100%;padding:0;margin:0;float:left;}
+.rp4wp-related-posts ul>li{list-style:none;padding:0;margin:0;padding-bottom:20px;clear:both;}
+.rp4wp-related-posts ul>li>p{margin:0;padding:0;}
+.rp4wp-related-post-image{width:35%;padding-right:25px;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;float:left;}</style>
+	<style type="text/css" id="yoko-themeoptions-css">
+		a {color: #e50048;}
+		#content .single-entry-header h1.entry-title {color: #e50048!important;}
+		input#submit:hover {background-color: #e50048!important;}
+		#content .page-entry-header h1.entry-title {color: #e50048!important;}
+		.searchsubmit:hover {background-color: #e50048!important;}
+	</style>
+    <style type="text/css" id="custom-background-css">
+body.custom-background { background-color: #000000; }
+</style>
+<link rel="icon" href="https://geildanke.com/blog/wp-content/uploads/2015/12/cropped-GD-Logo-32x32.png" sizes="32x32">
+<link rel="icon" href="https://geildanke.com/blog/wp-content/uploads/2015/12/cropped-GD-Logo-192x192.png" sizes="192x192">
+<link rel="apple-touch-icon-precomposed" href="https://geildanke.com/blog/wp-content/uploads/2015/12/cropped-GD-Logo-180x180.png">
+<meta name="msapplication-TileImage" content="https://geildanke.com/blog/wp-content/uploads/2015/12/cropped-GD-Logo-270x270.png">
+</head>
+
+<div class="gr-top-z-index gr-top-zero" tabindex="-1"><div class="_44eb54-hoverMenu" style="transform:translate(NaNpx, NaNpx);" data-grammarly-reactid=".2"><div class="_44eb54-panel" data-grammarly-reactid=".2.0"><div class="_44eb54-tooltip _44eb54-tooltip_hidden undefined" data-grammarly-reactid=".2.0.0"></div><div class="_44eb54-buttonArea" data-grammarly-reactid=".2.0.1"><div class="_44eb54-btn _44eb54-btn_disable" tabindex="-1" data-grammarly-reactid=".2.0.1.0"></div></div><div class="_44eb54-line" data-grammarly-reactid=".2.0.3"></div><div class="_44eb54-buttonArea" data-grammarly-reactid=".2.0.5"><div class="_44eb54-btn _44eb54-btn_grammarly" data-action="editor" tabindex="-1" data-grammarly-reactid=".2.0.5.0"></div></div></div></div></div><div style="visibility: hidden; top: -9999px; position: absolute; opacity: 0;"><div class="_44eb54-hoverMenu" style="transform:translate(NaNpx, NaNpx);" data-grammarly-reactid=".1"><div class="_44eb54-panel" data-grammarly-reactid=".1.0"><div class="_44eb54-tooltip _44eb54-tooltip_hidden undefined" data-grammarly-reactid=".1.0.0"></div><div class="_44eb54-buttonArea" data-grammarly-reactid=".1.0.1"><div class="_44eb54-btn _44eb54-btn_disable" tabindex="-1" data-grammarly-reactid=".1.0.1.0"></div></div><div class="_44eb54-line" data-grammarly-reactid=".1.0.3"></div><div class="_44eb54-buttonArea" data-grammarly-reactid=".1.0.5"><div class="_44eb54-btn _44eb54-btn_grammarly" data-action="editor" tabindex="-1" data-grammarly-reactid=".1.0.5.0"></div></div></div></div></div><body class="single single-post postid-1682 single-format-standard custom-background" data-gr-c-s-loaded="true" cz-shortcut-listen="true">
+<div id="page" class="clearfix">
+	<header id="branding">
+		<nav id="mainnav" class="clearfix">
+			<div class="menu-main-menu-container"><ul id="menu-main-menu" class="menu"><li id="menu-item-271" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-271"><a title="Responsive Webdesign und App-Development von Michaela Lehr und Richard Brammer" href="https://geildanke.com/en">About Geil,Danke!</a>
+<ul class="sub-menu">
+	<li id="menu-item-1478" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1478"><a title="A mobile app development and responsive web design studio" href="https://geildanke.com/en">Portfolio and References</a></li>
+	<li id="menu-item-1477" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1477"><a title="GeilDanke Impressum" href="https://geildanke.com/en/imprint">Imprint</a></li>
+</ul>
+</li>
+<li id="menu-item-23" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-23"><a title="Digitales Publizieren für Tablets" href="https://geildanke.com/blog/buch/">Digital Publishing Books (german)</a>
+<ul class="sub-menu">
+	<li id="menu-item-1479" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1479"><a href="http://dps-buch.de/">Adobe Digital Publishing Suite (extern)</a></li>
+	<li id="menu-item-655" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-655"><a href="https://geildanke.com/blog/buch/">Digitales Publizieren für Tablets</a></li>
+	<li id="menu-item-511" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-511"><a href="https://geildanke.com/blog/buch/leseprobe/">Leseprobe</a></li>
+	<li id="menu-item-31" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-31"><a href="https://geildanke.com/blog/buch/links/">Link-Liste</a></li>
+	<li id="menu-item-469" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-469"><a href="https://geildanke.com/blog/buch/typografie-fur-displays/">Typografie für Displays</a></li>
+	<li id="menu-item-711" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-711"><a href="https://geildanke.com/blog/buch/updates-zum-buch/">Updates zum Buch</a></li>
+	<li id="menu-item-39" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-39"><a href="https://geildanke.com/blog/buch/die-autoren/">Die Autoren</a></li>
+</ul>
+</li>
+</ul></div>		</nav><!-- end mainnav -->
+
+		
+		<hgroup id="site-title">
+					<h1><a href="https://geildanke.com/blog/" title="Geil,Danke! Blog">Geil,Danke! Blog</a></h1>
+				<h2 id="site-description">Apps, Websites, Games, Magazines</h2>
+				</hgroup><!-- end site-title -->
+
+
+        					<div class="clear"></div>
+
+		<nav id="subnav">
+					</nav><!-- end subnav -->
+</header><!-- end header -->
+<div id="wrap">
+<div id="main">
+
+	<div id="content">
+
+	
+			
+<article id="post-1682" class="post-1682 post type-post status-publish format-standard hentry category-online-marketing tag-api tag-integration tag-jvzipn tag-jvzoo tag-postman">
+
+	
+	<header class="single-entry-header">
+		<h1 class="entry-title">How to test your JVZoo integration with JVZIPN test data and Postman</h1>
+			<p><span class="entry-date">4. March 2016</span> <span class="entry-author">by Richard Brammer</span>  | <a href="https://geildanke.com/blog/how-to-test-jvzoo-integration-with-jvzipn-test-data-postman/#respond">0 comments</a></p>
+	</header><!-- end single-entry-header -->
+		
+	<div class="single-entry-content">
+				<p>To create a JVZIPN integration, you might want to test, if your service processes the data sent by JVZoo correctly.<br>
+Unfortunately JVZoo does not provide a sandbox environment to make test purchases and test your service.</p>
+<p>Of course you may create test purchases of your product and see, if your service operates correctly.<br>
+But this process has some disadvantages:</p>
+<ul>
+<li>it takes time to create a test purchase</li>
+<li>you need a seconds Paypal account</li>
+<li>each purchase cost you $0.01 (and refunding this does cost you time again)</li>
+<li>if your product is already being sold, the test purchases affect your publicly visible statistics</li>
+</ul>
+<h2>Prerequisites</h2>
+<p>A better idea is to grab the data JVZoo sends via its JVZIPN interface once, and reuse it for testing purchases on your local or testing environment.<br>
+To follow this process, there are several prerequisites:</p>
+<ul>
+<li>you need a host with PHP and HTTPS enabled to grab the data sent by JVZIPN once</li>
+<li>you need a tool like Postman (or curl) to send POST request to your development process, using the data generated in 1</li>
+</ul>
+<h2>How to</h2>
+<p>The process works as following:</p>
+<ol>
+<li>install a PHP script on your host – it must be accessible via HTTPS</li>
+<li>Setup your product on JVZ to send the JVZIPN integration to the script’s URL</li>
+<li>Make a test purchase, the script will collect the POST data sent by JVZIPN</li>
+<li>Download the log files, that keeps the POST data</li>
+<li>Setup Postman to use the exact same data, that JVZIPN sent, to send it to your development environment</li>
+<li>After finishing your development, setup JVZIPN to post to the URL your actual integration service is hosted</li>
+</ol>
+<p>Let us go through the steps one by one:</p>
+<h3>1. Install PHP script on HTTPS</h3>
+<p>Create an <code>index.php</code> with the content of this script and upload it to a directory of your webhost. </p>
+<p><code><br>
+&lt;?php<br>
+$date = new DateTime();</code></p><code>
+</code><p><code>$req_dump = '=== ' . $date-&gt;format('Y-m-d H:i:s') . " ===\r\n";<br>
+$req_dump .= print_r($_POST, TRUE);<br>
+$req_dump .= print_r($_SERVER, TRUE);<br>
+$req_dump .= '=======================================================';<br>
+$fp = fopen('request.log', 'a');<br>
+fwrite($fp, $req_dump);<br>
+fclose($fp);<br>
+</code></p>
+<p>If you open the URL in your browser, you shouldn’t see anything, because for GET requests, the script doesn’t send anything.</p>
+<h3>2. Setup product on JVZ</h3>
+<p>Open the product via “edit”. Within the External Program Integration Tab, open use method #1 and point to the HTTPS-URL the script is hosted under.<br>
+Choose “No for output as Key Generation” (actual it doesn’t matter, if it’s yes or no). And for JVZIPN Special Integration choose “General integration”.<br>
+Save the product.</p>
+<h3>3. Test purchase to collect data</h3>
+<p>Go to the seller’s dashboard. In the bottom left beneath your product list choose “Test purchases”.<br>
+Go through the process of creating a test purchase for your product. You will need a Paypal account, that isn’t connected to your JVZoo profile – e.g. a personal account or an account of a friend.</p>
+<h3>4. Download the log file</h3>
+<p>Access your host account, where the script is hosted. a request.log file should have been created next to the index.php.<br>
+You may also access it via the URL the script is hosted, adding request.log (or replacing index.php by request.log)<br>
+Open the request.log and you will see the headers and POST data of the request, that was made by JVZIPN during your test purchase.</p>
+<h3>5. Setup Postman</h3>
+<p><a href="http://www.getpostman.com/" target="_blank">Download</a>, install and open Postman if you haven’t already. Create a new POST request pointing to the development server of the service you want to integrate with JVZoo. Now add the data fields from request.log as body fields for the POST request in Postman. the format is x-www-form-urlencoded (as you an see in variable dump of $SERVER).</p>
+<div id="attachment_1688" style="width: 560px" class="wp-caption aligncenter"><img src="./How to test your JVZoo integration with JVZIPN test data and Postman __files/postman-550x420.png" alt="JVZoo IPN (JVZIPN) sends post values" width="550" height="420" class="size-large wp-image-1688" srcset="https://geildanke.com/blog/wp-content/uploads/2016/03/postman-488x372.png 488w, https://geildanke.com/blog/wp-content/uploads/2016/03/postman-768x586.png 768w, https://geildanke.com/blog/wp-content/uploads/2016/03/postman-550x420.png 550w" sizes="(max-width: 550px) 100vw, 550px"><p class="wp-caption-text">POST values sent by JVZIPN</p></div>
+<p>Now you may use Postman to emulate a test purchase, whenever you want.</p>
+<h3>6. Setup product at JVZoo</h3>
+<p>As soon as you are happy with your integration service, deploy it and do not forget to setup your product to point to the new integration service.</p>
+<div data-animation="no-animation" data-icons-animation="no-animation" data-overlay="" data-change-size="" data-button-size="1" style="font-size: 1em; display: block;" class="supsystic-social-sharing supsystic-social-sharing-package-flat supsystic-social-sharing-hide-on-mobile supsystic-social-sharing-spacing supsystic-social-sharing-content supsystic-social-sharing-content-align-left"><a class="social-sharing-button sharer-flat sharer-flat-2 counter-arrowed without-counter without-counter googleplus" target="_blank" title="Google+" href="https://plus.google.com/share?url=https%3A%2F%2Fgeildanke.com%2Fblog%2Fhow-to-test-jvzoo-integration-with-jvzipn-test-data-postman%2F" data-nid="3" data-pid="1" data-post-id="1682" data-url="https://geildanke.com/blog/wp-admin/admin-ajax.php" data-action="" rel="nofollow"><i class="fa fa-fw fa-google-plus"></i><div class="counter-wrap arrowed"><span class="counter">0</span></div></a><a class="social-sharing-button sharer-flat sharer-flat-2 counter-arrowed without-counter without-counter pinterest" target="_blank" title="Pinterest" href="http://pinterest.com/pin/create/link/?url=https%3A%2F%2Fgeildanke.com%2Fblog%2Fhow-to-test-jvzoo-integration-with-jvzipn-test-data-postman%2F&amp;media=https%3A%2F%2Fgeildanke.com%2Fblog%2Fwp-content%2Fuploads%2F2016%2F03%2Fpostman-550x420.png" data-nid="7" data-pid="1" data-post-id="1682" data-url="https://geildanke.com/blog/wp-admin/admin-ajax.php" data-action="" rel="nofollow"><i class="fa fa-fw fa-pinterest"></i><div class="counter-wrap arrowed"><span class="counter">3</span></div></a><a class="social-sharing-button sharer-flat sharer-flat-2 counter-arrowed without-counter without-counter linkedin" target="_blank" title="Linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=How+to+test+your+JVZoo+integration+with+JVZIPN+test+data+and+Postman&amp;url=https%3A%2F%2Fgeildanke.com%2Fblog%2Fhow-to-test-jvzoo-integration-with-jvzipn-test-data-postman%2F" data-nid="13" data-pid="1" data-post-id="1682" data-url="https://geildanke.com/blog/wp-admin/admin-ajax.php" data-action="" rel="nofollow"><i class="fa fa-fw fa-linkedin"></i><div class="counter-wrap arrowed"><span class="counter">1</span></div></a><a class="social-sharing-button sharer-flat sharer-flat-2 counter-arrowed without-counter without-counter facebook" target="_blank" title="Facebook" href="http://www.facebook.com/sharer.php?u=https%3A%2F%2Fgeildanke.com%2Fblog%2Fhow-to-test-jvzoo-integration-with-jvzipn-test-data-postman%2F" data-nid="1" data-pid="1" data-post-id="1682" data-url="https://geildanke.com/blog/wp-admin/admin-ajax.php" data-action="" rel="nofollow"><i class="fa fa-fw fa-facebook"></i><div class="counter-wrap arrowed"><span class="counter">0</span></div></a><a class="social-sharing-button sharer-flat sharer-flat-2 counter-arrowed without-counter without-counter twitter" target="_blank" title="Twitter" href="https://twitter.com/share?url=https%3A%2F%2Fgeildanke.com%2Fblog%2Fhow-to-test-jvzoo-integration-with-jvzipn-test-data-postman%2F&amp;text=How+to+test+your+JVZoo+integration+with+JVZIPN+test+data+and+Postman" data-nid="2" data-pid="1" data-post-id="1682" data-url="https://geildanke.com/blog/wp-admin/admin-ajax.php" data-action="" rel="nofollow"><i class="fa fa-fw fa-twitter"></i><div class="counter-wrap arrowed"><span class="counter">6</span></div></a></div><div class="rp4wp-related-posts">
+<h3>These articles will also interest you</h3>
+<ul>
+<li><div class="rp4wp-related-post-content">
+<a href="https://geildanke.com/blog/neues-in-version-29-der-adobe-digital-publishing-suite-zweigeteiltes-update/">Neues in Version 29 der Adobe Digital Publishing Suite (Zweigeteiltes Update)</a><p>Die neue DPS-Version v29 ist wie immer zum Download erhältlich in Ihrem Digital-Publishing-Portal (digitalpublishing.acrobat.com). Die wichtigsten Neuheiten bei diesem Update sind segmentierte Push-Nachrichten, der Welcome-Screen für Entitlement-Nutzer und gestreamte Video-…</p></div>
+</li>
+<li><div class="rp4wp-related-post-content">
+<a href="https://geildanke.com/blog/meta-daten-bei-auto-renewable-subscriptions/">Meta-Daten bei "Auto-Renewable Subscriptions"</a><p>Wenn Sie Ihren Lesern ein Abonnement anbieten möchten, so müssen Sie die Bedingungen dieser Abonnements in die Beschreibung Ihrer App in iTunesConnect (Metadata / Description) eintragen. Diesen Hinweis finden Sie…</p></div>
+</li>
+</ul>
+</div>
+			<div class="clear"></div>
+			
+								
+		
+	<footer class="single-entry-meta">
+		<p>			Categories: <a href="https://geildanke.com/blog/category/online-marketing/" rel="category tag">Online Marketing</a> | 
+									Tags: <a href="https://geildanke.com/blog/tags/api/" rel="tag">api</a>, <a href="https://geildanke.com/blog/tags/integration/" rel="tag">integration</a>, <a href="https://geildanke.com/blog/tags/jvzipn/" rel="tag">jvzipn</a>, <a href="https://geildanke.com/blog/tags/jvzoo/" rel="tag">jvzoo</a>, <a href="https://geildanke.com/blog/tags/postman/" rel="tag">postman</a> | 
+						<a href="https://geildanke.com/blog/how-to-test-jvzoo-integration-with-jvzipn-test-data-postman/">Permalink </a>
+			</p>
+	</footer><!-- end entry-meta -->
+	<br>
+	<br>
+	<div class="earnify-widget" data-widget-id="1081"></div>
+		<div class="author-info">
+		<img alt="" src="./How to test your JVZoo integration with JVZIPN test data and Postman __files/2e2674ae8e81f785ed02dcfd60fd406c" srcset="https://secure.gravatar.com/avatar/2e2674ae8e81f785ed02dcfd60fd406c?s=140&amp;r=g 2x" class="avatar avatar-70 photo" height="70" width="70">		<div class="author-description">
+		<h3>Author: <a href="https://geildanke.com/blog/author/richard/" title="Richard Brammer" rel="me">Richard Brammer</a></h3>
+		<p>Richard is web developer and digital publisher. He worked on the digital versions of Rolling Stone, GQ, Auto Bild and Sport Bild and develops hybrid apps for Audi and Knauf. In his free time he publishes games like geomiii and Sneaky and works on the digital gaming magazines elektrospieler and Crate. He is the co-author of the most important german books about Adobe Digital Publishing Suite. Find him on <a href="https://twitter.com/richardbrammer">Twitter</a>.</p>
+		</div><!-- end author-description -->
+	</div><!-- end author-info -->
+		</div><!-- end single-entry-content -->
+
+</article><!-- end post-1682 -->
+<div class="clear"></div>				
+			
+<div id="comments" class="clearfix">
+
+	
+				
+				
+					<div id="respond" class="comment-respond">
+			<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="https://geildanke.com/blog/how-to-test-jvzoo-integration-with-jvzipn-test-data-postman/#respond" style="display:none;">Cancel reply</a></small></h3>				<form action="https://geildanke.com/blog/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+					<p class="comment-notes">Required fields are marked <span class="required">*</span>.</p><p class="comment-form-comment"><label for="comment">Message <span class="required">*</span></label><br><textarea id="comment" name="0a3c2-comment" rows="8"></textarea><grammarly-btn><div style="visibility: hidden; z-index: 2;" class="_9b5ef6-textarea_btn _9b5ef6-not_focused" data-grammarly-reactid=".0"><div class="_9b5ef6-transform_wrap" data-grammarly-reactid=".0.0"><div title="Protected by Grammarly" class="_9b5ef6-status" data-grammarly-reactid=".0.0.0">&nbsp;</div></div></div></grammarly-btn><textarea name="comment" style="display:none" rows="1" cols="1"></textarea></p><p class="comment-form-author"><label for="author">Name <span class="required">*</span></label> <input id="author" name="author" type="text" value="" size="30" aria-required="true" required="required"></p>
+<p class="comment-form-email"><label for="email">Email <span class="required">*</span></label> <input id="email" name="email" type="text" value="" size="30" aria-describedby="email-notes" aria-required="true" required="required"></p>
+<p class="comment-form-url"><label for="url">Website</label> <input id="url" name="url" type="text" value="" size="30"></p>
+<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Post Comment"> <input type="hidden" name="comment_post_ID" value="1682" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+</p>				</form>
+					</div><!-- #respond -->
+		</div><!-- end comments -->
+				
+			<nav id="nav-below">
+				<div class="nav-previous"></div>
+				<div class="nav-next"><a href="https://geildanke.com/blog/ios-9-ohne-zeitungskiosk-aber-mit-news-app/" rel="prev">Next Post  →</a></div>
+			</nav><!-- end #nav-below -->
+				
+	</div><!-- end content -->
+	
+
+<div id="secondary" class="widget-area" role="complementary">
+			<aside id="social_links-3" class="widget widget_social_links"><h3 class="widget-title">Follow us</h3><ul><li class="widget_sociallinks"><a href="https://twitter.com/geildanke" class="twitter" target="_blank">Twitter</a></li><li class="widget_sociallinks"><a href="https://www.facebook.com/geildanke" class="facebook" target="_blank">Facebook</a></li></ul></aside>		</div><!-- #secondary .widget-area -->
+</div><!-- end main -->
+
+		<div id="tertiary" class="widget-area" role="complementary">
+			<aside id="search-3" class="widget widget_search"><h3 class="widget-title">Search</h3><form role="search" method="get" class="searchform" action="https://geildanke.com/blog/">
+    <div>
+    <input type="text" class="search-input" value="" name="s" id="s">
+    <input type="submit" class="searchsubmit" value="Search">
+    </div>
+    </form></aside><aside id="text-4" class="widget widget_text"><h3 class="widget-title">About us</h3>			<div class="textwidget"><p>Geil,Danke! is the web, app, digital magazine and game development studio by Michaela Lehr and Richard Brammer.</p>
+<br>
+<p>We love to create web apps, hybrid apps, native apps, mobile games and digital magazines. We share our knowledge in our projects and in our blog. </p>
+<br>
+<p>If you want to know more about our references, visit <a title="Apps, Websites, Games, Magazines" href="https://geildanke.com/?l=tp">geildanke.com</a> or drop us a line on Twitter or Facebook.</p></div>
+		</aside>		</div><!-- end tertiary .widget-area -->
+</div><!-- end wrap -->
+
+	<footer id="colophon" class="clearfix">
+		<a href="https://geildanke.com/blog/how-to-test-jvzoo-integration-with-jvzipn-test-data-postman/#page" class="top">Top</a>
+	</footer><!-- end colophon -->
+	
+</div><!-- end page -->
+
+<!-- Simple Google Analytics Begin -->
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount','UA-23075027-1']);
+_gaq.push(['_trackPageLoadTime']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+				<script type="text/javascript">
+
+					(function($) {
+						
+						// Type de fichiers télechargeable						
+						var filetypes = /\.(zip|exe|dmg|pdf|doc.*|xls.*|ppt.*|mp3|txt|rar|wma|mov|avi|wmv|flv|wav)$/i ;
+						var baseHref = '' ;
+
+						if ($('base').attr('href') != undefined) baseHref = $('base').attr('href') ;
+				 
+				 		// On ajoute un event sur toutes les balises 'a' de la page
+						$('a').on('click', function(event) {
+
+							var el = $(this) ;
+							var track = true ;
+							var href = (typeof(el.attr('href')) != 'undefined' ) ? el.attr('href') :"" ;
+							var isThisDomain = href.match(document.domain.split('.').reverse()[1] + '.' + document.domain.split('.').reverse()[0]) ;
+
+							if (!href.match(/^javascript:/i)) {
+								var elEv = []; elEv.value=0, elEv.non_i=false ;
+								if (href.match(/^mailto\:/i)) {
+									elEv.category = "email" ;
+									elEv.action = "click" ;
+									elEv.label = href.replace(/^mailto\:/i, '') ;
+									elEv.loc = href ;
+								}
+								else if (href.match(filetypes)) {
+									var extension = (/[.]/.exec(href)) ? /[^.]+$/.exec(href) : undefined ;
+									elEv.category = "download" ;
+									elEv.action = "click-" + extension[0] ;
+									elEv.label = href.replace(/ /g,"-") ;
+									elEv.loc = baseHref + href ;
+								}
+								else if (href.match(/^https?\:/i) && !isThisDomain) {
+									elEv.category = "external" ;
+									elEv.action = "click" ;
+									elEv.label = href.replace(/^https?\:\/\//i, '') ;
+									elEv.non_i = true;  
+									elEv.loc = href ;
+								}
+								else if (href.match(/^tel\:/i)) {
+									elEv.category = "telephone" ;
+									elEv.action = "click" ;
+									elEv.label = href.replace(/^tel\:/i, '') ;
+									elEv.loc = href ;
+								}
+								else track = false ;
+
+								if (track) {
+									_gaq.push(['_trackEvent', elEv.category.toLowerCase(), elEv.action.toLowerCase(), elEv.label.toLowerCase(), elEv.value, elEv.non_i]) ;
+									if (el.attr('target') == undefined || el.attr('target').toLowerCase() != '_blank') {
+										setTimeout(function() { location.href = elEv.loc; }, 400) ;
+										return false ;
+									}
+								}
+							}
+
+						}) ;
+
+					})(jQuery) ;
+
+				</script>
+
+			
+<!-- Simple Google Analytics End -->
+	<script type="text/javascript">
+
+		(function(){
+
+			var cookieBar = function() { cookieChoices.showCookieBar({ linkHref: '', dismissText: '', position: 'bottom', cookieText:'', linkText: '', language: 'en'}) };
+
+			if(document.addEventListener) {
+				document.addEventListener('DOMContentLoaded', cookieBar);
+			}
+			else {
+				document.attachEvent('onreadystatechange', function(event) {
+		            if ( document.readyState === "complete" ) {
+		            	cookieBar();
+					}
+				});
+			}
+		})();
+
+	</script>
+<link rel="stylesheet" id="sss-base-css" href="./How to test your JVZoo integration with JVZIPN test data and Postman __files/base.css" type="text/css" media="all">
+<link rel="stylesheet" id="sss-tooltipster-main-css" href="./How to test your JVZoo integration with JVZIPN test data and Postman __files/tooltipster.css" type="text/css" media="all">
+<link rel="stylesheet" id="sss-brand-icons-css" href="./How to test your JVZoo integration with JVZIPN test data and Postman __files/brand-icons.css" type="text/css" media="all">
+<link rel="stylesheet" id="sss-tooltipster-shadow-css" href="./How to test your JVZoo integration with JVZIPN test data and Postman __files/tooltipster-shadow.css" type="text/css" media="all">
+<script type="text/javascript" src="./How to test your JVZoo integration with JVZIPN test data and Postman __files/cookiechoices.js"></script>
+<script type="text/javascript" src="./How to test your JVZoo integration with JVZIPN test data and Postman __files/comment-reply.min.js"></script>
+<script type="text/javascript" src="./How to test your JVZoo integration with JVZIPN test data and Postman __files/smoothscroll.js"></script>
+<script type="text/javascript" src="./How to test your JVZoo integration with JVZIPN test data and Postman __files/wp-embed.min.js"></script>
+<script type="text/javascript" src="./How to test your JVZoo integration with JVZIPN test data and Postman __files/frontend.js"></script>
+<script type="text/javascript" src="./How to test your JVZoo integration with JVZIPN test data and Postman __files/jquery.tooltipster.min.js"></script>
+<script type="text/javascript" src="./How to test your JVZoo integration with JVZIPN test data and Postman __files/jquery.bpopup.min.js"></script>
+<script type="text/javascript" src="./How to test your JVZoo integration with JVZIPN test data and Postman __files/share.js"></script>
+
+<div id="cookieChoiceInfo" style="position: fixed; width: 100%; margin: 0px; left: 0px; bottom: 0px; padding: 4px; z-index: 1000; text-align: center; background-color: rgba(238, 238, 238, 0.901961);"><div style="padding-right: 50px;"><span>Cookies help us deliver our services. By using our services, you agree to our use of cookies.</span><a id="cookieChoiceDismiss" href="https://geildanke.com/blog/how-to-test-jvzoo-integration-with-jvzipn-test-data-postman/#" style="margin-left: 24px;">Got it</a></div><a id="cookieChoiceDismissIcon" href="https://geildanke.com/blog/how-to-test-jvzoo-integration-with-jvzipn-test-data-postman/#" style="width: 50px; height: 100%; display: inline-block; position: absolute; right: 0px; top: 0px; background-image: url(&quot;data:image/png;base64,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&quot;); background-color: rgba(204, 204, 204, 0.6); background-size: 20px; background-position: 34% 50%; background-repeat: no-repeat;"></a></div></body><div style="visibility: hidden; top: -9999px; position: absolute; opacity: 0;"></div><div style="visibility: hidden; top: -9999px; position: absolute; opacity: 0;"></div><span class="gr__tooltip"><span class="gr__tooltip-content"></span><i class="gr__tooltip-logo"></i><span class="gr__triangle"></span></span></html>

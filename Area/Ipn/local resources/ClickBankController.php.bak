@@ -1,0 +1,73 @@
+<?php
+
+namespace Area\Ipn;
+
+
+class ClickBankController
+{
+    private $order;
+    public function Index()
+    {
+
+        //returns order or returns
+       if($this->CheckClickBankIpn() == true)
+       {
+
+       }
+
+        http_response_code(200);
+    }
+
+
+    public function CheckClickBankIpn()
+    {
+        // NOTE: the mcrypt libraries need to be installed and listed as an
+        // available extension in your phpinfo() to be able to use this
+        // method of decryption.
+
+        $secretKey = "YOUR SECRET KEY"; // secret key from your ClickBank account
+
+        // get JSON from raw body...
+        $message = json_decode(file_get_contents('php://input'));
+
+        // Pull out the encrypted notification and the initialization vector for
+        // AES/CBC/PKCS5Padding decryption
+        $encrypted = $message->{'notification'};
+        $iv = $message->{'iv'};
+        error_log("IV: $iv");
+
+        // decrypt the body...
+        $decrypted = trim(mcrypt_decrypt(MCRYPT_RIJNDAEL_128,
+            substr(sha1($secretKey), 0, 32),
+            base64_decode($encrypted),
+            MCRYPT_MODE_CBC,
+            base64_decode($iv)), "\0..\32");
+        //error_log("Decrypted: $decrypted");
+
+        // convert the decrypted string to a JSON object...
+        $order = json_decode($decrypted);
+
+        // Ready to rock and roll - If the decoding of the JSON string wasn't
+        // successful, then you can assume the notification wasn't encrypted
+        // with your secret key.
+        if(json_last_error() == JSON_ERROR_NONE)
+        {
+            $this->order = $order;
+            return true;
+        }
+
+        return false;
+        
+//        switch (json_last_error()) {
+//            case JSON_ERROR_NONE:
+//                $this->order = $order;
+//                $no_error = true;
+//                break;
+//            default:
+//                $no_error = false;
+//                break;
+//        }
+//
+//        return $no_error;
+    }
+}

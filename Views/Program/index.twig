@@ -1,0 +1,52 @@
+{% extends "Shared/_layout.twig" %}
+
+{% block title %} {{ program_info.name }} {% endblock %}
+
+{% block body %}
+
+{% if program_info is defined and program_categories is defined %}
+<div class="container container-adjust-margin white">
+
+    <div class="row">
+        <div class="col-lg-12 margin-top-10">
+            <h2 class="margin-top-40"> {{ program_info.full_name }} </h2>
+        </div>
+    </div>
+
+    <div class="row margin-top-15">
+        <div>
+            <div class="col-lg-12">
+                {{ program_info.excert }}
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row margin-top-15">
+        <div class="col-lg-12">
+            {% for category in program_categories %}
+                <div class="panel panel-default">
+                    <div class="panel-heading darken-grey white-text no-border">{{ category.name }}</div>
+
+                    <div class="list-group">
+                        {% for item in category.items %}
+                            <a href="/program/item/{{ program_info.program_id }}/{{ item.item_id }}" class="list-group-item program_item">
+                                <i class="fa fa-youtube-play margin-right-10"></i>
+                                {{ item.name }}
+
+                                <!-- video play time -->
+                                {#{% if item.play_time is not null %}#}
+                                    {#<div class="pull-right black-text"><small>{{ item.play_time }}</small></div>#}
+                                {#{% endif %}#}
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}
+
+{% endblock %}
+
+{% block footer_scripts %}{% endblock %}

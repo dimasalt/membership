@@ -1,0 +1,90 @@
+
+@import 'https://fonts.googleapis.com/css?family=Merriweather:300,300i,400,700,700i,900,900i';
+@import 'https://fonts.googleapis.com/css?family=PT+Serif';
+
+
+body {
+    font: 300 17px/29px 'Merriweather', serif;
+    color: #333333;
+    background: #ffffff;
+}
+
+h1 {
+    margin: 15px 0 10px 0;
+    line-height: 1.5em;
+    text-transform: capitalize;
+    font-size: 42px;
+    font-family: 'PT Serif', serif;
+}
+h1 span {
+    color: #0d9593;
+}
+
+h3 {
+    margin-top:75px;
+    margin-bottom:35px;
+    line-height: 1.5em;
+    text-transform: capitalize;
+    font-size: 36px;
+    text-align: center;
+}
+
+.top-alert {
+    background-color: #DDDDDD;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 15px 0 15px 0;
+    font-size: 16px;
+    text-align: center;
+    color: #4b4b4b;
+    /*text-shadow: 0 1px #4B4B4B;*/
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.subhead {
+    color: #ffffff;
+    padding: 18px 0;
+    font-size: 26px;
+    /*font-family: 'Oxygen', sans-serif;*/
+    /*font-family: 'Fjalla One', sans-serif;*/
+    font-family: 'Lato', sans-serif;
+    background-color: #1bbcba;
+}
+
+p {  margin-top: 30px;  }
+
+.col-lg-9 { padding: 0 35px; }
+
+
+
+.side-borders {
+    border-right: 1px solid #DDDDDD;
+    border-left: 1px solid #DDDDDD;
+}
+.border-top { border-top: 1px solid #DDDDDD;}
+.border-bottom { border-bottom: 1px solid #DDDDDD;}
+
+
+.light-gray { background-color: #F7F7F7; }
+.light-gray-text { color: #F7F7F7; }
+.cayan { background-color: #1bbcba; }
+.cayan-text { color: #0d9593; }
+.orange-text { color: #FFEC4E; }
+.orange { background-color: #FFEC4E ;}
+
+
+.highlight {
+    background-color: #FFEC4E;
+    color: #000000;
+}
+
+.highlight2 { background-color: #fffc96; }
+
+ul.sales_page { list-style-image: url('/assets/images/tick_black.png'); }
+ul.sales_page li {
+    margin-top: 25px;
+}
+
+ul.small-margin li {
+    margin-bottom: 15px;
+}

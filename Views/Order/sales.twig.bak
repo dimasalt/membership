@@ -1,0 +1,294 @@
+{% extends "Shared/_layout_sales.twig" %}
+
+{% block title %} Meditation: A Complete Guide From A to Z {% endblock %}
+
+{% block header_block %}{% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid top-alert">
+        Attention Man And Women Who Struggle With Anxiety
+    </div>
+
+    <div class="container-fluid white black-text text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9 col-lg-offset-2 margin-bottom-15 border-none">
+                    <h1>A Powerful 5,000 years Old system to <span>remove anxiety and bring happiness back</span> to your life</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid text-white subhead">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9 col-lg-offset-2 border-none text-center">
+                    <strong>A completely natural way that is proven to help even if everything else is failed</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid white black-text">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9 col-lg-offset-2 side-borders border-bottom z-depth-05">
+                    <div class="clearfix"></div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6 margin-top-40">
+                        <img src="/assets/images/me.png" class="img-responsive" alt="" />
+                        <div class="clearfix"></div>
+                        <div class="text-center margin-top-10" style="line-height: 18px;">
+                            <small>
+                                <strong>Dmitri Saltanovich</strong><br />
+                                M.Hp, M.NLP, M.TLT and a guy with over 12 years of meditation experience
+                            </small>
+                        </div>
+                    </div>
+                    <div class="col-lg-9 margin-top-25">
+                        Dear friend, <br /><br />If you are struggling with anxiety and decided to get your life back, then this is going to be a very important message for you to read. Because I am going to show
+                        you<strong> a natural system to remove anxiety</strong> and get happiness back to your life.
+                        <br />
+                        <br />
+                        But first, lets me share with you a story…
+                    </div>
+
+                    <div class="clearfix"></div>
+
+
+                    <h3>Ending The Nightmare</h3>
+
+                    <img src="/assets/images/meditation%20sales%20page/women_in_field.png" class="img-thumbnail img-responsive pull-right margin-left-25" style="width: 35%;" />
+
+                    <p>Growing up Jenn always knew she was different. She lived with her sister and mother and her parents were divorced. Her father left one day and never came back.</p>
+
+                    <p>She would later discover that her anxiety attacks were triggered by abandonment.</p>
+
+                    <p>On the outside, she was an excellent student with good grades, a talent for music and always with a smile on her face.</p>
+
+                    <p>But on the inside she feared to be alone, unwanted, unpopular and unloved and felt trapped in a nightmare that would never end.</p>
+
+                    <p>Her first anxiety attack happened in a 9th grade. A teacher has asked her to come in front and make a small presentation.</p>
+
+                    <p>Simple enough…</p>
+
+                    <p>But the moment she came to the front a panic attack hit her. She started shaking, feel nauseous and sweating from head to toe.</p>
+
+                    <p>She wanted to run, but couldn't.</p>
+
+                    <p>At times when she felt fine, she wondered when her next anxiety attack would hit her. Constant worrying and panicking barely left her
+                        any strength to go through the day.</p>
+
+                    <p>Her mother tried everything she could to help her…</p>
+
+                    <p>She went to a therapist, took a cocktail of multiple medications and even took habit forming classes.</p>
+
+                    <p>But this all only made her feel like a zombie moving through the life.</p>
+                    <p>By the age of 16, she was completely shut socially. Her peers went to parties, played sport and started dating. But she was a prisoner in her own home.</p>
+
+                    <p>She barely managed to finish the high school. But when she went to college her anxiety became so unbearable that she had to drop out.</p>
+
+                    <p>Then one morning her wake-up call came in.</p>
+
+                    <p>She was reading a newspaper; it was an article on meditation. The article described what meditation is, and how it can help people.</p>
+
+                    <p>She decided to give it a try.</p>
+
+                    <p>Over the next few months, she got every book and product on meditation she could lay her hands on.</p>
+
+                    <p>It took her a year, but by the end of this year she was anxiety free, and the nightmare was over.</p>
+
+                    <p>Today her life is completely different, she got back and graduated college and is planning to marry her fiancé and looking forward buying her first house.</p>
+
+                    <p>She beliefs she got lucky on that faithful morning to find a solution to escape her nightmare.</p>
+
+                    <h3>A Secret That Makes Meditation One of The Most Effective Tools For Anxiety And For Panic Attacks</h3>
+
+                    <img src="/assets/images/meditation%20sales%20page/The-Power-of-Concentration.jpg" class="img-thumbnail img-responsive pull-left margin-right-25" style="width: 35%;" />
+
+                    <p>Life offers no magic bullets; we all know that.</p>
+                    <p>But if there is one thing that comes close to it, then it is meditation.</p>
+                    <p>Not only meditation can heal your long term anxiety, but it can also remove all the negativity you have acquired over the time as a result of anxiety.</p>
+                    <p>With meditation, you can remove the root cause for your anxiety, and also remove negative feelings and emotions, self-defeating beliefs, internal personality conflicts and negative behavior patterns.</p>
+                    <p><strong>It is a powerful tool, and if you struggle with anxiety, you should learn to use it.</strong></p>
+                    <p>Because it will bring light back to your life.</p>
+                    <p>The reason meditation is so efficient and powerful is because it gives you full control over your mind.</p>
+                    <p>With meditation, you literally can walk into your mind and rearrange or change the things you want.</p>
+                    <p>This means that if you have any other issues you struggle with, physical, emotional or mental you can use meditation to solve them as well.</p>
+
+                    <h3>A Number One Reason Why Meditation Becoming So Popular And People Cannot Stop Praising It Enough</h3>
+
+                    <p>There is a reason why meditation is so popular with people singing praises to it and cannot get enough of it.</p>
+                    <p>Because it is <strong>a life changer.</strong></p>
+                    <p>In fact, meditation been getting so much attention and popularity that some of the very prominent world institutions came out with their own research on it.</p>
+                    <p>Like two years ago, University of Toronto (ranked 7th in the world) came out with research with very positive results on how mindfulness meditation is very effective for anxiety.</p>
+                    <p>I know it firsthand because I have met the researcher and took a workshop with him.</p>
+                    <p>In fact, I am going to share with you the exact mindfulness meditation technique that they have used in their research so effectively.</p>
+                    <p>But here is what even more interesting…</p>
+                    <p>Traditional therapists who usually stay away from alternative methods nowadays start to suggest meditation to their patients who struggle with anxiety, panic attacks, and depression.</p>
+                    <p>And it is happening in sweeping numbers.</p>
+                    <p>Even they cannot keep their eyes closed and deny the overwhelming evidence on how powerful and effective meditation is.</p>
+                    <p>But, to use meditation for anxiety, you have to learn it the right way.</p>
+
+
+                    <h3>Why You Almost Guaranteed to Fail to Learn Meditation And How to Fix it</h3>
+                    <img src="/assets/images/meditation%20sales%20page/women-meditating.png" class="img-thumbnail img-responsive pull-right margin-left-25" style="width: 35%;" />
+
+                    <p>If you just starting with meditation or don&rsquo;t have enough experience you are almost guaranteed to fail to learn meditation.</p>
+                    <p>This is because most of the advice out there is a casual, sparkly and a new-age advice.</p>
+                    <p>Advice that makes total sense but wrong at its core.</p>
+                    <p>And if you follow it, it will lead you down to a path of failure, frustration, and regret.</p>
+                    <p>Things that you already have plenty because of anxiety or panic attacks.</p>
+                    <p>I am talking here about advice such as &ldquo;to meditate just sit down, close your eyes and concentrate on something.&rdquo;</p>
+                    <p>Very wrong!</p>
+                    <p>Here, ask yourself if any concentration in your life ever led to meditation?</p>
+                    <p>When you studied at school and concentrated on homework did it ever lead to meditation?</p>
+                    <p>When you are busy and fully concentrated at work did it ever lead to meditation?</p>
+                    <p>When you are reading an interesting book and fully engaged in the process to the point of forgetting about anything around you. Did it ever lead to meditation?</p>
+                    <p>I can continue and give you more examples, but the answer to all of them would be NO.</p>
+
+                    <p>In fact, never before in your life no concentration ever led you to meditation. Or for that matter to any state of mind that can change your life entirely.</p>
+                    <p>This is because to reach meditation it takes a very specific concentration done in a very specific way.</p>
+                    <span class="highlight2"><u>So how would you go about learning meditation?</u></span>
+                    <p>The answer is simple.</p>
+
+                    <img src="/assets/images/meditation%20sales%20page/lotus.png" class="img-thumbnail img-responsive pull-left margin-top-20 margin-right-25" style="width: 35%;" />
+                    <p><strong>It&rsquo;s called a traditional yoga meditation</strong>.</p>
+                    <p>You see, yoga and meditation been around for 5000 years. Meaning it had 500 centuries to develop and perfect a system to learn and practice meditation.</p>
+                    <p>And this traditional system been tested by billions of people and been proven to work exceptionally well.</p>
+                    <p>You see, no matter what other people may tell you, meditation is a pinnacle of almost any yoga system. Even big gurus of physically centered yoga systems admit that without meditation their system is only as half as good.</p>
+                    <p>Given that, can anyone really think that to meditate all you need is just sit down and concentrate?</p>
+                    <p>No way! Unless of course you already mastered the art.</p>
+                    <p><strong>That&rsquo;s why the traditional yoga meditation developed a gradual step-by-step system that allows you quickly and surely learn meditation. And no new-age advice will ever come close to it</strong>.</p>
+                    <p>The new-age advice may look logical; it may look convincing, it may make total sense, but it is impractical and in the long run going only to harm you.</p>
+          
+                    <p>Which brings me to the next important point</p>
+
+
+
+                    <h3>A Complete Guide That Teaches You Everything You Need To Know on Meditation So You Can Change Your Life, Remove Anxiety And Get Your Happiness Back</h3>
+
+                    <img src="/assets/images/meditation%20sales%20page/product_box-with_discs.png" class="img-responsive pull-left margin-top-20 margin-right-25" style="width: 35%;" />
+                    <p>That&rsquo;s why I have decided to take my 12 years of meditation experience and put a traditional yoga meditation system into a program &ldquo;Meditation: A Complete Guide From A to Z&rdquo;.</p>
+                    <p><strong>A program that takes you by hand and step-by-step in a clear-cut manner teaches you exactly how to meditate as well gives you the exact meditations that you need for anxiety.</strong></p>
+                    <p>It assumes that you have no experience at all, and takes you from the very first baby steps all the way up to be a skilled meditation practitioner.</p>
+                    <p>It is a complete reference with all the theory and practice you will ever need. And is specifically designed to remove anxiety and panic attacks from your life.</p>
+                    <p>Below is the list of things you will find in the program:</p>
+                    <ul class="sales_page">
+                        <li><strong>A tool to remove the root cause for your anxiety</strong>, eliminate negative feelings and emotions, change self-defeating beliefs, change unconscious unwanted behaviors and eliminate internal conflicts. All the things that prevent light from coming back to your life.</li>
+                        <li><strong>A program that you can use to heal anxiety as effective as going to therapist with many years of experience.</strong></li>
+                        <li><strong>Completely natural and medication free approach</strong> that you can effectively use to treat anxiety and panic attacks. You don&rsquo;t have to resort to taking a cocktail of questionable medications that alter your brain chemistry.</li>
+                        <li>A page turner and an eye opener that will help you to understand what&rsquo;s going on inside your mind, why you experience anxiety, why it&rsquo;s gets out of control and how to solve the issue.</li>
+                        <li>This is not &ldquo;if you decided to be ok than you will be ok&rdquo; type program, but rather a very practical meditation system created specifically to help with anxiety.</li>
+                        <li>Even the first steps in this program will diminish anxiety, panic attacks and any depression.</li>
+                        <li><strong>17 videos packed with all the theory, practice and answers you will ever need to successfully learn meditation</strong>. Plus 5 guided audio meditation that you can load into your sound producing device and practice meditation everywhere. </li>
+                        <li><strong>Step by step instructions</strong> to guide you all the way from the very beginning and all the way up to the time when you become good at meditation and can stand you own ground.</li>
+                        <li><strong>Fine and often hidden points for every technique directly from my 12 years&rsquo; experience</strong>. This alone can make a world of difference between successful practice and failed one. You will be learning the right way from the very beginning and avoid making painful mistakes that could keep your meditation practice stagnant or worse create unwanted disruptions for your health, mental and emotional well-being.</li>
+                        <li><strong>Tested by time and practice material</strong>. Every technique or theory piece you get in &ldquo;Meditation: A Complete Guide From A to Z&rdquo; program I have practiced and experienced myself in my own practice at that time or another. You are getting 100% tested, proven and working material.</li>
+                        <li>
+                            An opportunity to learn directly from experienced meditation practitioner, like if it were face to face. Which is the best way to learn something like this.
+                            <p>This is also your opportunity to look into how a daily practice of experienced meditation practitioner looks like.</p>
+                        </li>
+                        <li><strong>A complete meditation reference</strong> that you can use for years to come. Meditation is like train, once you get on, you will never get off because you will love it. So, even if you stop practicing for a while eventually you will find your way back anyways and you will have the guide to help you restart</li>
+                        <li><strong>Discover a common new age yoga misconceptions and learn how to avoid them</strong>. Nothing wastes time more in meditation than having a wrong information and practicing the wrong way. The information you will find in this program will change your entire approach to how you practice or think about meditation.</li>
+                        <li>Not just another anxiety self-help program. But a system to combat your anxiety all the way up until you got rid of it entirely.</li>
+                        <li>Even if you feel your life is on the decline and can do barely anything, with meditation almost immediately you will find that you have more and more
+                            &ldquo;normal&rdquo; days than before.</li>
+                        <li><strong>Learn how to tackle the heart of your anxiety and get a solution to eliminate it</strong></li>
+                        <li><strong>Rip vast benefits that meditation has to offer</strong> and harvest that power directly into your life to make any issue or struggle to
+                            go away and improve your life the way you want it</li>
+                        <li><strong>Find the inner peace and balance</strong> that will allow you to stand your ground strong and look the life directly into eyes</li>
+                        <li><strong>Be healthier, look younger and live longer</strong>. Meditation makes all those things easily reachable. They are byproduct and you get them even
+                            if you don&rsquo;t try.</li>
+                        <li><strong>Learn techniques that you can put to work immediately</strong>.</li>
+                        <li>An effective tool to free you from a life sentenced to anxiety, be happy again and start waking up with a smile on your face.</li>
+                        <li><strong>30 days unconditional money back guarantee</strong></li>
+                    </ul>
+
+                    <div class="col-lg-10 col-lg-offset-1">
+                        <img src="/assets/images/30days%20guarantee.png" class="img-responsive center-block margin-top-25 margin-bottom-20" />
+                        If for any reason you don’t like the “Meditation: A complete guide from A to Z” program you can send me an email ask for refund and I will issue a
+                        friendly refund the very dame day. No questions asked.
+                    </div>
+
+                    <div class="clearfix" ></div>
+
+
+                    <h3>An Amazing Bonus: 5 Audio Guided Meditation</h3>
+                   <img src="/assets/images/meditation%20sales%20page/guided_meditations_cover.png" class="img-responsive img-thumbnail margin-right-25 pull-left" style="width: 30%" />
+
+                    <p>You also get 5 guided audio meditation that you can load into your audio device and meditate anywhere.</p>
+                    <p>The meditations you get are:</p>
+                    <ul class="col-lg-8">
+                        <li><strong>Quiet The Mind Meditation</strong> - For ultimate relaxation. Something that is hard to achieve when you struggle with anxiety.</li>
+                        <li><strong>Serenity Meditation</strong> - To achieve peace and oneness</li>
+                        <li><strong>Healing Meditation</strong> - For accelerated healing and energy boost.</li>
+                        <li><strong>Higher Power Meditation</strong> - For a better connection with your inner self</li>
+                        <li><strong>Potential Meditation</strong> - To unleash your inner hidden potential</li>
+                    </ul>
+                   <div class="clearfix"></div>
+
+                    <div class="margin-top-40"></div>
+                    <a href="/order/checkout/1" class="">
+                        <div class="text-center margin-bottom-15" style="font-size: 42px">
+                            <s class="red-text margin-right-25">$60</s>
+                            <span class="blue-text">$47</span>
+                        </div>
+                        <img src="/assets/images/Buy-Now-Button.png" class="img-responsive center-block margin-bottom-40" />
+                    </a>
+                    <div class="clearfix" ></div>
+
+
+                    <h3 style="margin-top:85px;">A Way To Treat Anxiety And Panic Attacks Like if You Were Going To Experienced Therapist And it Doesn’t Involve Medication.</h3>
+
+                    <p>You and I know you did not choose to have anxiety and panic attacks. It just happened and is no fault of yours.</p>
+                    <p>But now that you have it, you have to do something about it.</p>
+
+                    <p>The question is what will it be.</p>
+
+                    <p>Until now, you have tried to cope with it while you search and apply random solutions and fixes. All while being at risk of anxiety getting larger and
+                        larger until it takes over your life entirely. Perhaps even evolving into something bigger like depression.</p>
+                    
+                    <p><strong>That was the past&hellip;</strong></p>
+
+                    <p><strong>But now, you have a solution that works, very efficient and is right in front of you. The solution that already helped to a lot of people continues to help
+                        and every day gets more and more recognition.</strong></p>
+
+                    <p>Here is the thing. I know you are serious about changing your life and removing anxiety. Otherwise, you wouldn't read this message and get to this point.</p>
+
+                    <p>So if I am right, then here is what you should do next&hellip;</p>
+
+                    <p>Click the button below, get the &ldquo;Meditation: A Complete Guide From A to Z&rdquo; program and start practicing it right away.</p>
+
+                    <p>Because the sooner you start, the more and more normal days you will start to have. Until one day the anxiety and the panic attacks a completely gone.</p>
+
+                    <p>Then, one day in the future when you look back and realize the right decision you have made and the life that you have created as a result of this decision,
+                        you will feel very proud of your achievement. And rightfully so.</p>
+
+                    <div class="clearfix margin-top-40"></div>
+                    <a href="/order/checkout/1" class="">
+                        <div class="text-center margin-bottom-15" style="font-size: 42px">
+                            <s class="red-text margin-right-25">$60</s>
+                            <span class="blue-text">$47</span>
+                        </div>
+                        <img src="/assets/images/Buy-Now-Button.png" class="img-responsive center-block margin-bottom-40" />
+                    </a>
+                    <div class="clearfix" ></div>
+
+                    <p><u>P.S:</u> <strong>Remember the program is totally risk-free and comes with 30 days&rsquo; unconditional money back guarantee</strong>. If you don&rsquo;t like it for whatever reason, just send me an email, and I will issue a friendly refund the very same day. No question asked.</p>
+
+                    <p><u>P.S.S:</u> <strong>The program comes with an email support, and I encourage you to take a full advantage of it</strong>. Having somebody with 12 years of experience guiding you through the process and helping you out is indispensable. Because not only I am experienced meditation practitioner but I also an alternative health therapist who helps people with anxiety in real life in my private practice.&nbsp;</p>
+
+                    <p>So you get a double benefit. Make sure to use it to your advantage.</p>
+
+                    <p><u>P.S.S:</u> This is not an overnight magic solution. But a complete meditation system designed to help you overcome anxiety and panic attacks in a gradual, with your full control and in an entirely natural way.&nbsp;</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block footer_scripts %}{% endblock %}
+

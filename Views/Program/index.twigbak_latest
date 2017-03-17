@@ -1,0 +1,169 @@
+{% extends "Shared/_layout.twig" %}
+
+{% block title %} {{ program_info.name }} {% endblock %}
+
+{% block body %}
+
+{% if program_info is defined and program_categories is not defined %}
+<div class="container container-adjust-margin white z-depth-1">
+    <div class="row">
+
+        <div class="col-lg-12 margin-top-40">
+            <img src="{{ program_info.program_img }}" class="img-responsive" alt="{{ program_info.name }}" />
+        </div>
+        <br />
+        <br />
+        <div class="col-lg-12 margin-top-40">
+            {{ program_info.description }}
+            <br>
+            <br>
+
+            <a href="#" class="btn btn-lg green white-text z-depth-1 col-lg-6 col-lg-offset-3 margin-top-40 margin-bottom-40" style="font-size: 28px; color: #fff">
+                I want to read more
+                <i class="fa fa-arrow-right"></i>
+            </a>
+
+            <div class="clearfix"></div>
+        </div>
+
+    </div>
+</div>
+{% endif %}
+
+{% if program_info is defined and program_categories is defined %}
+<div class="container container-adjust-margin white">
+
+    <div class="row">
+        <div class="col-lg-12 margin-top-10">
+            <h2 class="margin-top-40"> {{ program_info.full_name }} </h2>
+        </div>
+    </div>
+
+    <div class="row margin-top-15">
+        <div>
+            <div class="col-lg-12">
+                {{ program_info.excert }}
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row margin-top-15">
+        <div class="col-lg-12">
+            {% for category in program_categories %}
+                <div class="panel panel-default">
+                    <div class="panel-heading darken-grey white-text no-border">{{ category.name }}</div>
+
+                    <div class="list-group">
+                        {% for item in category.items %}
+                            <a href="/program/item/{{ program_info.program_id }}/{{ item.item_id }}" class="list-group-item program_item">
+                                <i class="fa fa-youtube-play margin-right-10"></i>
+                                {{ item.name }}
+
+                                <!-- video play time -->
+                                {% if item.play_time is not null %}
+                                    <div class="pull-right black-text"><small>{{ item.play_time }}</small></div>
+                                {% endif %}
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}
+
+{% endblock %}
+
+{% block footer_scripts %}{% endblock %}
+
+{#<div class="row margin-top-15">#}
+    {#<div class="col-lg-12">#}
+        {#<div class="panel panel-default">#}
+            {#<div class="panel-heading darken-grey white-text no-border">Theory of meditation</div>#}
+            {#<div class="panel-body">#}
+                {#<p>...</p>#}
+            {#</div>#}
+
+            {#<div class="list-group">#}
+                {#<a href="#" class="list-group-item active disabled darken-grey no-border">#}
+                    {#Theory of meditation#}
+                {#</a>#}
+                {#<a href="#" class="list-group-item">#}
+                    {#<i class="fa fa-youtube-play margin-right-10"></i>#}
+                    {#Welcome#}
+                {#</a>#}
+                {#<a href="#" class="list-group-item">#}
+                    {#<i class="fa fa-youtube-play margin-right-10"></i>#}
+                    {#Why meditation is good for you#}
+                {#</a>#}
+                {#<a href="#" class="list-group-item">#}
+                    {#<i class="fa fa-youtube-play margin-right-10"></i>#}
+                    {#Benefits of meditation#}
+                {#</a>#}
+                {#<a href="#" class="list-group-item">#}
+                    {#<i class="fa fa-youtube-play margin-right-10"></i>#}
+                    {#Your practice diet#}
+                {#</a>#}
+            {#</div>#}
+        {#</div>#}
+
+        {#<div class="panel panel-default">#}
+            {#<div class="panel-heading darken-grey white-text no-border">Poses</div>#}
+            {#<div class="panel-body">#}
+            {#<p>...</p>#}
+            {#</div>#}
+
+            {#<div class="list-group">#}
+                {#<a href="#" class="list-group-item">#}
+                    {#<i class="fa fa-youtube-play margin-right-10"></i>#}
+                    {#What is the right postion for your meditation practice#}
+                {#</a>#}
+            {#</div>#}
+        {#</div>#}
+
+        {#<div class="panel panel-default">#}
+            {#<div class="panel-heading darken-grey white-text no-border">Relaxation (Pratyahara)</div>#}
+            {#<div class="panel-body">#}
+            {#<p>...</p>#}
+            {#</div>#}
+
+            {#<div class="list-group">#}
+                {#<a href="#" class="list-group-item">#}
+                    {#<i class="fa fa-youtube-play margin-right-10"></i>#}
+                    {#Relaxation#}
+                {#</a>#}
+            {#</div>#}
+        {#</div>#}
+
+
+        {#<div class="panel panel-default">#}
+            {#<div class="panel-heading darken-grey white-text no-border">Breathing exercises (Pranayama)</div>#}
+            {#<div class="panel-body">#}
+            {#<p>...</p>#}
+            {#</div>#}
+
+            {#<div class="list-group">#}
+                {#<a href="#" class="list-group-item">#}
+                    {#<i class="fa fa-youtube-play margin-right-10"></i>#}
+                    {#Breathing theory#}
+                {#</a>#}
+                {#<a href="#" class="list-group-item">#}
+                    {#<i class="fa fa-youtube-play margin-right-10"></i>#}
+                    {#Basic breathing exercise#}
+                {#</a>#}
+                {#<a href="#" class="list-group-item">#}
+                    {#<i class="fa fa-youtube-play margin-right-10"></i>#}
+                    {#Working with Nadi channels#}
+                {#</a>#}
+                {#<a href="#" class="list-group-item">#}
+                    {#<i class="fa fa-youtube-play margin-right-10"></i>#}
+                    {#Breathing grounding technique#}
+                {#</a>#}
+            {#</div>#}
+        {#</div>#}
+
+    {#</div>#}
+
+{#</div>#}
+

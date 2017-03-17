@@ -1,0 +1,25 @@
+jQuery(document).ready(function($) {
+	$('.lightbox_trigger').click(function(e) {
+	
+		var image_url = $(this).attr("image_detail_url");
+
+		if ($('#lightbox').length > 0) { // #lightbox exists	
+			$('#lightbox-content').html('<img src="' + image_url + '" />');
+			$('#lightbox').show();
+		} else {
+			var lightbox = 
+			'<div id="lightbox">' +
+				'<div id="lightbox-content">' + //insert clicked link's href into img src
+					'<img src="' + image_url +'" />' +
+				'</div>' +	
+			'</div>';
+
+			//insert lightbox HTML into page
+			$('body').append(lightbox);			
+		}
+	});
+	
+	$('#lightbox').live('click', function() {
+		$('#lightbox').hide();
+	});
+});

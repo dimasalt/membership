@@ -1,0 +1,105 @@
+<?php
+
+//$ curl -d "ccustname=JohnSmith&ccuststate=&ccustcc=&ccustemail=test@niteoweb.com&cproditem=1&cprodtitle=TestProduct&cprodtype=STANDARD&ctransaction=SALE&ctransaffiliate=affiliate@niteoweb.com&ctransamount=1000&ctranspaymentmethod=&ctransvendor=&ctransreceipt=1&cupsellreceipt=&caffitid=&cvendthru=&cverify=1EC4B66A&ctranstime=1350388651" http://localhost:8080/Plone/@@jvzoo
+
+namespace Area\Ipn;
+
+use Membership\Helpers;
+
+class JVZooController
+{
+    /*
+     * -----------------------------------------------------------
+     *  Take JVZOO payment
+     * -----------------------------------------------------------
+     */
+    public function Index()
+    {
+        if($this->jvzipnVerification() == 1)
+        {
+            //collect sale information
+            $contact_details =      array(
+                "txn_id"                => $_POST['ctransreceipt'],
+                "payer_email"           => $_POST['ccustemail'],
+                "first_name"            => $_POST['ccustname'],
+                "last_name"             => null,
+                "address_street"        => null,
+                "address_city"          => null,
+                "address_state"         => $_POST["ccuststate"],
+                "address_country"       => $_POST["ccustcc"],
+                "address_zip"           => null
+            );
+
+
+            $payment_details =      array(
+                "item_name"             => $_POST['cprodtitle'],
+                "payment_status"        => 'Instant',
+                "payment_type"          => $_POST['ctransaction'],
+                "payment_amount"        => $_POST['ctransamount'],
+                "txn_id"                => $_POST['ctransreceipt'],
+                "payment_source"        => "JVZoo" //where the payment came from //need for database record
+            );
+
+            //add order record
+            $ord = new Order();
+            $ord->PlaceOrder($contact_details, $payment_details);
+
+            //register sale
+            if($_POST['ctransaction'] == 'SALE')
+            {
+                //add to membership
+                $ac = new Account();
+                $ac->AddToMembership($contact_details['first_name'], $contact_details['last_name'], $contact_details['payer_email'], $payment_details["item_name"], 0);
+                $ac->AddUserToProgram($contact_details['payer_email'], $payment_details["item_name"]);
+
+                //add to auto responder
+                $au = new Autoresponder();
+                $au->AddToProgramList($payment_details['item_name'], $contact_details['payer_email'], $contact_details['first_name'], $contact_details['last_name']);
+            }
+            else if($_POST['ctransaction'] == 'RFND' || $_POST['ctransaction'] == 'CGBK' || $_POST['ctransaction'] == 'INSF')
+            {
+                //membership
+                $ac = new Account();
+                $ac->RemoveUserFromProgram($contact_details['payer_email'], $payment_details["item_name"]);
+
+                //remove from auto responder
+                $au = new Autoresponder();
+                $au->RemoveFromProgramList($payment_details['item_name'], $contact_details['payer_email'], $contact_details['first_name'], $contact_details['last_name']);
+            }
+        }
+
+        http_response_code(200);
+    }
+
+    /*
+     * --------------------------------------------------------
+     *  Verify that request came from JVZoo
+     * -------------------------------------------------------
+     */
+    public function jvzipnVerification() {
+        $secretKey = "MyJVZIPNSecretKey";
+        $pop = "";
+        $ipnFields = array();
+        foreach ($_POST AS $key => $value) {
+            if ($key == "cverify") {
+                continue;
+            }
+            $ipnFields[] = $key;
+        }
+        sort($ipnFields);
+        foreach ($ipnFields as $field) {
+            // if Magic Quotes are enabled $_POST[$field] will need to be
+            // un-escaped before being appended to $pop
+            $pop = $pop . $_POST[$field] . "|";
+        }
+        $pop = $pop . $secretKey;
+        if ('UTF-8' != mb_detect_encoding($pop))
+        {
+            $pop = mb_convert_encoding($pop, "UTF-8");
+        }
+        $calcedVerify = sha1($pop);
+        $calcedVerify = strtoupper(substr($calcedVerify,0,8));
+
+        return $calcedVerify == $_POST["cverify"];
+    }
+}

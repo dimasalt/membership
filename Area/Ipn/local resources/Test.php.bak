@@ -1,0 +1,57 @@
+<?php
+
+namespace Area\Ipn;
+
+class Test
+{
+    public function Index()
+    {
+        $contact_details =      array(
+            "txn_id"                => "ASDFGDFGW46y",
+            "payer_email"           => "fulfillinglifecoach-buyer@gmail.com",
+            "first_name"            => "Dmitri",
+            "last_name"             => "Saltanovich",
+            "address_street"        => "110 Jameson Ave, apt 405",
+            "address_city"          => "Toronto",
+            "address_state"         => "Ontario",
+            "address_country"       => "Canada",
+            "address_zip"           => "M6K 2X9",
+            "contact_phone"         => "647-864-2435"
+        );
+
+
+        $payment_details =      array(
+            "txn_id"                => "ASDFGDFGW46y",
+            "txn_type"              => "Cart",
+            "payment_type"          => "instant",
+            "payment_status"        => "Refunded",
+            "payment_source"        => "PayPal", //where the payment came from //need for database record
+            "item_name"             => "Instant Anxiety Relief",
+            "payment_amount"        => "45.55",
+            "date"                  => ""
+        );
+
+
+        $ord = new Order();
+        $ord->PlaceOrder($contact_details, $payment_details);
+
+        $mem = new MembershipAccount();
+        $mem->RemoveUserFromProgram('fulfillinglifecoach-buyer@gmail.com', 'Instant Anxiety Relief');
+
+        $au = new Autoresponder();
+        $au->RemoveFromProgram('Instant Anxiety Relief', 'fulfillinglifecoach-buyer@gmail.com', 'Test', 'Buyer');
+
+
+//        $mem->AddToMembership('Dmitri', 'Salt', 'dimasalt@gmail.com');
+//        $mem->AddUserToProgram('dimasalt@gmail.com', 'Instant Anxiety Relief');
+
+
+//        error_log(date('[Y-m-d H:i e] '). "The response from IPN was: yes" . PHP_EOL, 3, "ipn.log");
+
+//        $au = new Autoresponder();
+//        //$au->AddToProgram('Instant Anxiety Relief', 'dimsalt@gmail.com', 'Dmitri', 'Saltanovich');
+//        $au->RemoveFromProgram('Instant Anxiety Relief', 'dimsalt@gmail.com', 'Dmitri', 'Saltanovich');
+
+        return;
+    }
+}

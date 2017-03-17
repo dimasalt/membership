@@ -1,0 +1,11 @@
+###################################
+#
+# ignored files and folders
+#
+# Untrack file or folder without removing it:
+# git rm --cached <file>
+###################################
+
+.idea
+.phpintel
+/vendor

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Admin Panel</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="/Area/Admin/assets/css/nprogress.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="/Area/Admin/assets/css/custom.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    {% block header_scripts %}{% endblock %}
+</head>
+
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+
+            <!-- left side menu -->
+            {% include '/Shared/_left_menu.twig' %}
+
+            <!-- top navigation -->
+            {% include '/Shared/_menu.twig' %}
+            <!-- /top navigation -->
+
+            <!-- page content -->
+            {% block body %}{% endblock %}
+            <!-- /page content -->
+
+            <!-- footer content -->
+            {% include '/Shared/_footer.twig' %}
+            <!-- /footer content -->
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"
+            integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+    <!-- Bootstrap -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <!-- NProgress -->
+    <script src="/Area/Admin/assets/js/nprogress.min.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="/Area/Admin/assets/js/custom.min.js"></script>
+
+    {% block footer_scripts %}{% endblock %}
+
+
+    <!-- script to get admin profile -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            getAdminProfile();
+
+            function getAdminProfile(){
+                var data = {};
+                data = JSON.stringify(data); // $.param({ 'id': ticket_id });
+
+                var profile = $.post("/admin/getprofile", data);
+
+                profile.done(function (data) {
+                    if (data.is_success) {
+
+                        $('.admin_profile_img').attr('src', data.admin_profile.avatar_url);
+                        $('.admin_profile_name').text(data.admin_profile.first_name + ' '+ data.admin_profile.last_name);
+                    }
+                });
+
+                profile.always(function () {
+                    // // Reenable the inputs
+                    // $('input').prop( "disabled", false );
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+
+<nav class="navbar navbar-default main-nav z-depth-05">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <div class="navbar-header pull-left">
+                <a class="navbar-brand" href="/">
+                    <img src="/assets/images/Icon-membership.png" class="img-responsive pull-left" style="margin-top:-15px; margin-left: -4px;" alt="membership, join us" />
+                    <div class="logo-text">Better Life <br/> Membership</div>
+                </a>
+                <a href="/">
+
+                </a>
+            </div>
+
+        </div>
+
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+                {% if user is defined %}
+                    <li><a href="/account/profile"><i class="fa fa-user"></i> Profile</a></li>
+                {% endif %}
+                <li><a href="http://better-life-tips.com" target="_blank"><i class="fa fa-rss"></i> Blog</a></li>
+                {% if "admin" in user.roles %}
+                    <li><a href="/admin/index"><i class="fa fa-tasks margin-right-5"></i> Admin</a></li>
+                {% endif %}
+                {#{% if "admin" in user.roles %}#}
+                    {#<li class="dropdown">#}
+                        {#<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">#}
+                            {#<i class="fa fa-tasks margin-right-5"></i>#}
+                            {#Admin <span class="caret"></span>#}
+                        {#</a>#}
+                        {#<ul class="dropdown-menu">#}
+                            {#<li><a href="#">Promotions</a></li>#}
+                            {#<li><a href="#">Programs</a></li>#}
+                            {#<li><a href="/admin/members">Members</a></li>#}
+                        {#</ul>#}
+                    {#</li>#}
+                {#{% endif %}#}
+
+                <li><a href="/contact"><i class="fa fa-envelope"></i> Contact</a></li>
+                {% if login_page != true and user is not defined %}
+                    <li><a href="/account/login" class="btn btn-sm green margin-top-5 z-depth-1"><i class="fa fa-sign-in"></i> Login</a></li>
+                {% endif %}
+                {% if user is defined %}
+                    <li><a href="/account/logout" class="btn btn-sm black white-text margin-top-5 z-depth-1"><i class="fa fa-sign-in"></i> Logout</a></li>
+                {% endif %}
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>

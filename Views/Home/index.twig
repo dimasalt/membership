@@ -1,0 +1,136 @@
+{% extends "Shared/_layout.twig" %}
+
+{% block title %} Membership {% endblock %}
+
+{% block body %}
+
+
+{#<div class="menu border"></div>#}
+
+{#<div class="page-headline">#}
+    {#<div class="container"></div>#}
+{#</div>#}
+
+{% if user is not defined and promotion is defined and promotion != false %}
+<div class="container-fluid container-adv container-adjust-margin" style="background-color: #f4f4f4" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12 pull-left margin-bottom-25">
+                {#<h2>We are leading company</h2>#}
+                {#<div class="margin-top-25">  Donec elementum mi vitae enim fermentum lobortis. In hac habitasse platea dictumst. Ut pellentesque, orci sed mattis consequat, libero ante lacinia arcu, ac porta lacus urna in lorem. Praesent consectetur tristique augue, eget elementum diam suscipit id.</div>#}
+
+                {#<h2 class="margin-top-40">Wide range of services</h2>#}
+                {#<div class="margin-top-15">Interdum et malesuada fames ac ante ipsum primis in faucibus. Nam condimentum laoreet sagittis. Duis quis ullamcorper leo. Suspendisse potenti.</div>#}
+                {{ promotion.description | raw }}
+
+                <a href="{{ promotion.details_link }}" class="btn btn-success btn-lg white-text margin-top-15" style="font-size: 24px;">Click to Learn More ...<i class="fa fa-arrow-right margin-left-10" aria-hidden="true"></i></a>
+            </div>
+
+            <div class="col-lg-5 col-md-5 col-sm-6 col-xs-8">
+                {% if promotion.media_type == "video" %}
+                    <iframe class="promo-video"  src="{{ promotion.media_link }}" webkitallowfullscreen="" mozallowfullscreen=""
+                            allowfullscreen="" id="fitvid85977">
+                    </iframe>
+                {% elseif promotion.media_type == "image" %}
+                    <a href="{{ promotion.details_link }}">
+                        <img src="{{ promotion.media_link }}" alt="{{ promotion.name }}" class="img-responsive margin-top-25 center-block" style="width: 70%;" />
+                    </a>
+                {% endif  %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<div class="container-fluid">
+    <div class="container">
+        <div class="row margin-top-10">
+
+            <div class="col-lg-12">
+                <div class="col-lg-9">
+                    <h2>Courses</h2>
+                </div>
+
+                <!-- user course selection drop down -->
+                {% if user is defined %}
+                    <div class="col-lg-3">
+                        <select class="form-control margin-top-20" id="drp_userPrograms">
+                            <option>All Courses</option>
+                            <option selected>My Courses</option>
+                        </select>
+                    </div>
+
+                    <div class="margin-top-10 hidden-lg"></div>
+                {% endif %}
+
+                <div class="clearfix"></div>
+                <div class="divider-bold-black"></div>
+            </div>
+
+        </div>
+
+        {%  if programs is empty %}
+            <div class="col-lg-12 alert alert-warning round-corners-none margin-top-25 margin-bottom-25">
+                <i class="fa fa-exclamation-triangle margin-right-10"></i>
+                Sorry but no programs are available at this time.
+            </div>
+        {% endif %}
+
+
+        <div class="row margin-top-15 margin-bottom-40">
+            {% for program in programs %}
+                <div class="col-lg-4 program_item" att-m="{{ program.is_member }}">
+                    <a href="/program/index/{{ program.program_id }}">
+                        <div class="card z-depth-05">
+                            <div class="image">
+                                <img src="{{ program.program_img }}" class="img-responsive" style="height: 161px" alt="{{ program.name }}" />
+                            </div>
+                            <div class="title">{{ program.name | raw }}</div>
+                            <div class="divider"></div>
+                            <div class="content">
+                                {{ program.excert | raw }}
+                            </div>
+                            <!--<div class="card-action">-->
+                            <!--<a href="#" class="right">More Info</a>-->
+                            <!--<div class="clearfix"></div>-->
+                            <!--</div>-->
+                        </div>
+                    </a>
+
+                </div>
+            {% endfor %}
+
+        </div>
+
+    </div>
+</div>
+<div class="clearfix"></div>
+
+{% endblock %}
+
+{% block footer_scripts %}
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            //make initial program display selection
+            changeCourseDisplayList();
+
+            //display and hide programs in which user member or not
+            function changeCourseDisplayList()
+            {
+                if($('#drp_userPrograms').val() == 'All Courses')
+                    $('.program_item').show();
+                else if($('#drp_userPrograms').val() == 'My Courses') {
+                    $('.program_item[att-m = 0]').hide();
+                }
+            }
+
+            //program list selection drop down
+            $('#drp_userPrograms').change(function () {
+                changeCourseDisplayList();
+            });
+        });
+    </script>
+
+{% endblock %}

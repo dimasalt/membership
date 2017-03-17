@@ -1,0 +1,154 @@
+
+body {
+    background-color: rgb(241, 242, 246);
+    /*background-image: none;*/
+}
+
+.border-box {
+    margin-top: -20px;
+    border-top: 6px solid  #16abbf;
+    width: 100%;
+
+
+}
+
+.sales-page {
+    margin-top:0px;
+    /*color: #434a54;*/
+    color: #434A54;
+}
+
+.sales-page h1 {
+    font-size: 28px;
+    color:#3BAFDA;
+}
+
+.sales-page h2 {
+    font-size: 22px;
+    text-transform: uppercase;
+}
+
+.sales-page h3 {
+    font-size: 20px;
+    color: #3BAFDA;
+}
+
+
+.sales-page ul {
+    list-style-image: url('/assets/images/check-mark.png');
+    margin-right:25px;
+    margin-left:15px;
+}
+
+.sales-page ul li {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #656D78;
+}
+
+.sales-page input[type="text"], .sales-page select{
+    height: 40px;
+    border-radius: 0;
+    border: 1px solid #d0d0d0;
+    padding-left: 8px;
+
+    /*border-bottom: none;*/
+    margin-top: -1px;
+}
+
+/*.sales-page select { font-style: normal; }*/
+
+.sales-page input[type="text"].border-bottom,
+.sales-page select.border-bottom
+{
+    border-bottom: 1px solid #d0d0d0;
+}
+
+
+.sales-page input[type="text"].border-top
+{
+    border-top: 1px solid #d0d0d0;
+}
+
+.sales-page input[type="radio"]{
+    margin: 0 0 0 25px;
+}
+
+.sales-page .btn-success {
+    border-radius: 6px;
+    padding: 15px 35px 15px 35px;
+    text-transform: none;
+}
+
+.sales-page .order_summary {
+    border:1px solid #dfdfdf;
+    margin-top:60px;
+    padding-top: 0;
+    padding-left: 10px;
+}
+
+.sales-page .order_summary div.row {
+    margin-right:-1px;
+    margin-left:-11px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border:1px solid #dfdfdf;
+    margin-top: -1px;
+}
+
+.sales-page .order_summary div.row .price
+{
+    padding-top: 0px;
+    padding-bottom: 0px;
+    font-size: 28px;
+    color: #8CC152;
+}
+
+.sales-page .order_summary div.row div
+{
+   vertical-align: middle;
+}
+
+.sales-page .secured {
+    font-size: 13px;
+    margin-top:5px;
+}
+
+/*************************************************
+        ALERTS
+**************************************************/
+.sales-page .alert {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 16px;
+    border-radius: 0;
+    margin-bottom: 5px;
+    margin-top:7px;
+}
+
+.alert-danger {
+    /*color: #a94442;*/
+    color: #ffffff;
+    /*background-color: #F2DEDE;*/
+    background-color: #D91404;
+    border: 1px solid #ebccd1;
+}
+
+/*.alert-success {*/
+    /*color: #ffffff;*/
+    /*background-color: #4CAF50;*/
+/*}*/
+
+/**************************************************
+            PLACEHOLDERS
+**************************************************/
+.sales-page ::-webkit-input-placeholder,
+.sales-page :-moz-placeholder,
+.sales-page :-ms-input-placeholder
+{
+    color: #3a3a3a;
+    padding: 4px 0px 4px 6px;
+    font-size: 14px;
+}
+

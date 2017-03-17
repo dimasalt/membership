@@ -1,0 +1,30 @@
+{
+    "require": {
+        "slim/slim": "^3.0",
+        "twig/twig": "^1.24",
+        "twig/extensions": "^1.3",
+        "swiftmailer/swiftmailer": "^5.4",
+		"activecampaign/api-php": "1.0.0",
+        "stripe/stripe-php": "^3.21",
+        "braintree/braintree_php": "^3.16",
+        "aws/aws-sdk-php": "^3.19"    
+    },
+    "autoload": {
+        "psr-4": {
+            "Membership\\Controllers\\": "Controllers/",
+            "Membership\\Helpers\\": "Helpers/",
+            "Membership\\Models\\": "Models/",
+            "Membership\\Libraries\\": "Libraries/",
+            "Membership\\Middleware\\": "Middleware/",
+            "Membership\\Area\\": "Area/"
+        },
+        "classmap" : [
+            "Controllers/",
+            "Helpers/",
+            "Models/",
+            "Libraries/",
+            "Middleware",
+            "Area"
+        ]
+    }
+}

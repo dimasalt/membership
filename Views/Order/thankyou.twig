@@ -1,0 +1,52 @@
+{% extends "Shared/_layout.twig" %}
+
+{% block title %} {{ program_info.name }} {% endblock %}
+
+{% block header_block %}{% endblock %}
+
+{% block body %}
+<div class="container container-adjust-margin">
+    <div class="col-lg-10 col-lg-offset-1 white z-depth-05">
+
+        <h1 class="text-center margin-top-40">
+            <i class="fa fa-check-circle green-text" aria-hidden="true" style="font-size: 48px;"></i>
+            <div class="cleafix"></div>
+            Your order was completed successfully!
+        </h1>
+
+
+        <div class="alert alert-success margin-top-10 text-center col-lg-6 col-md-8 col-sm-10 col-xs-12 col-lg-offset-3 col-md-offset-2 col-sm-offset-1">
+            Order#: {{ txn_id }}
+        </div>
+
+        <div class="clearfix"></div>
+
+        <hr />
+
+        <div class="panel panel-default margin-bottom-15 no-border-radius">
+            <div class="panel-body" style="font-size: larger;">
+                <p>
+                    Please check your email for a <strong><u>detailed purchase invoice</u></strong> and for a full <strong><u>membership login information</u></strong>
+                    (username and password) for immediate access to the program.
+                </p>
+                <br />
+                If for any reason you require my assistance, send me a direct email at <a href="mailto:dmitri@better-life-tips.com">dmitri@better-life-tips.com</a>
+                <br /><br />
+                Looking forward to see you on the other side.
+            </div>
+
+            <div class="alert alert-info">
+                NOTE: Please be advised that yahoo email provider delivers emails with slight delay. Please allow some 20-30 minutes for an email to arrive.
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block footer_scripts %}{% endblock %}
+

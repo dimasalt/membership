@@ -1,0 +1,126 @@
+<?php
+
+namespace Area\Ipn;
+
+use PDO;
+
+
+class Order
+{
+    public function PlaceOrder($contact_details, $payment_details)
+    {
+        try {
+
+            //start transaction
+            $pdo = $this->getPDO();
+
+            //check if transaction has not been submitted previously
+            $transaction = $pdo->prepare('SELECT txn_id FROM transaction_details WHERE txn_id = ?');
+            $transaction->execute(array($payment_details['txn_id']));
+            $trans_found = $transaction->fetch(\PDO::FETCH_ASSOC);
+
+            //if not found then it is new transaction and we can commit
+            if($trans_found == false)
+            {
+                //start transaction
+                $pdo->beginTransaction();
+
+                //insert order values
+                $order = $pdo->prepare('Insert 
+                                  into transaction_details(txn_id, txn_type, payment_type, payment_status, payment_source, item_name, amount) 
+                                  values(?, ?, ?, ?, ?, ?, ?)');
+                $order->execute(array(
+                    $payment_details['txn_id'],
+                    $payment_details['txn_type'],
+                    $payment_details['payment_type'],
+                    $payment_details['payment_status'],
+                    $payment_details['payment_source'],
+                    $payment_details['item_name'],
+                    (string)$payment_details['payment_amount']));
+
+
+                //enter buyer details
+                $buyer = $pdo->prepare('Insert 
+                                  into buyer_details(txn_id, email, fname, lname, address, state, country, postal ) 
+                                  values(?, ?, ?, ?, ?, ?, ?, ?)');
+                $buyer->execute(array(
+                    $contact_details['txn_id'],
+                    $contact_details['payer_email'],
+                    $contact_details['first_name'],
+                    $contact_details['last_name'],
+                    $contact_details['address_street'] . ',' . $contact_details['address_city'],
+                    $contact_details['address_state'],
+                    $contact_details['address_country'],
+                    $contact_details['address_zip']));
+
+                //commit changes to the database
+                $pdo->commit();
+            }
+        }
+        catch (PDOException $ex) {
+            //error_log(date('[Y-m-d H:i e] '). "database error is: " . $ex->getMessage() . PHP_EOL, 3, 'ipn.log');
+            //var_dump($ex->getMessage());
+        }
+    }
+
+
+
+    /*
+     * ------------------------------------------------------
+     * Gets Database Connection
+     * -------------------------------------------------------
+     */
+    private function getPDO()
+    {
+        $options = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8');
+        $dsn = 'mysql:host=localhost;dbname=transactions;charset=utf8';
+
+        try {
+            $config = include CONFIG_URL;
+
+            $db = new PDO(
+                $dsn,
+                $config['db']['username'],
+                $config['db']['password'],
+                $options);
+
+            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+
+            return $db;
+        } catch (PDOException $ex) {
+            die("Failed to connect to the database");
+            //error_log(date('[Y-m-d H:i e] '). "database error is: " . $ex->getMessage() . PHP_EOL, 3, 'ipn.log');
+            die($ex->getMessage());
+            //: " . $ex->getMessage());
+        }
+
+        return null;
+    }
+}
+
+/**
+$contact_details =      array(
+    "payer_email"           => $_POST['payer_email'],
+    "first_name"            => $_POST['first_name'],
+    "last_name"             => $_POST['last_name'],
+    "address_street"        => $_POST["address_street"],
+    "address_city"          => $_POST["address_city"],
+    "address_state"         => $_POST["address_state"],
+    "address_country"       => $_POST["address_country"],
+    "address_zip"           => $_POST["address_zip"],
+    "contact_phone"         => $_POST['contact_phone']
+);
+
+
+$payment_details =      array(
+"txn_id"                => $_POST['txn_id'],
+"txn_type"              => $_POST['txn_type'],
+"payment_type"          => $_POST['payment_type'],
+"payment_status"        => $_POST['payment_status'],
+"payment_source"        => "PayPal", //where the payment came from //need for database record
+"item_name"             => $_POST['item_name'],
+"payment_amount"        => $_POST['mc_gross'],
+"date"                  => $_POST["payment_date"]
+);
+*/

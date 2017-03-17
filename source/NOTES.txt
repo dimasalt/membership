@@ -1,0 +1,41 @@
+/*****************************************************************
+                Colors:
+    http://www.colourlovers.com/palettes
+
+                Website examples
+    http://beautiful-templates.com/evo/free-joomla-templates/?r=http%3A%2F%2Fbeautiful-templates.com%2Fdemo%2Ftemplates-joomla%2Fst_birdsign%2F
+    http://www.templatemonster.com/demo/55156.html
+
+                Material design frameworks
+    http://semantic-ui.com/
+    http://materializecss.com/
+
+            Material design posts with list of frameworks
+    http://noeticforce.com/css-front-end-frameworks-for-web-development-and-design
+    http://noeticforce.com/best-material-design-web-frameworks
+
+            Email testing (for each email that is about to be sent
+    http://www.mail-tester.com/   -- great for email testing
+*****************************************************************/
+/*****************************************************************
+        Virtual Servers
+
+    digitalocean.com    --> good support
+    www.linode.com      --> good support
+    www.vultr.com
+    www.upcloud.com
+    https://www.youtube.com/watch?v=9inKBYf2YHI
+******************************************************************/
+
+Copy Resources
+
+http://www.psychotactics.com/blog/
+http://www.jeffsextonwrites.com/2012/02/85-copywriting-resources/
+https://getuikit.com
+
+******************************************************************
+Stripe token
+http://stackoverflow.com/questions/32430652/errors-when-making-a-stripe-charge-using-custom-curl-and-php-code?rq=1
+
+
+

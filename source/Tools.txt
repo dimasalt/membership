@@ -1,0 +1,5 @@
+https://jscompress.com/ - compress javascript
+
+CSS minifiers
+http://csscompressor.com/
+https://cssminifier.com/

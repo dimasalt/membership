@@ -1,0 +1,111 @@
+{% extends "Shared/_layout.twig" %}
+
+{% block title %} Members management {% endblock %}
+
+{% block body %}
+
+    <div class="container white z-depth-1 container-adjust-margin">
+        <div class="row margin-bottom-25">
+
+            <div class="col-lg-12">
+
+                <h2>Members Management</h2>
+
+                <div class="row">
+                    <div class="col-lg-12 alert darken-grey white-text round-corners-none margin-bottom-40 margin-top-5">
+                        No worries, simply enter your email below and we will send you a new one right away.
+                    </div>
+
+                    {#<div class="col-lg-6 col-md-7 col-sm-10 col-xs-12 col-lg-offset-3 col-md-offset-2 col-sm-offset-1 alert alert-success white-text round-corners-none" ng-show="alert.success == true">#}
+                        {#{% verbatim %}{{ alert.message }}{% endverbatim %}#}
+                    {#</div>#}
+                    {#<div class="col-lg-6 col-md-7 col-sm-10 col-xs-12 col-lg-offset-3 col-md-offset-2 col-sm-offset-1 alert alert-danger white-text round-corners-none" ng-show="alert.error == true">#}
+                        {#{% verbatim %}{{ alert.message }}{% endverbatim %}#}
+                    {#</div>#}
+                </div>
+
+
+                <form method="post" action="/admin/adduser">
+                {#<form method="post" action="/api/register/51092c5b070f25d9c4eef87d08f3b86decad4570/1">#}
+
+                {#<form method="post" action="/api/register">#}
+
+                <div class="form-group col-lg-5">
+                        <label for="email">Email address</label>
+                        <input type="email" class="form-control no-border-radius" id="email" name="email" placeholder="Email" required>
+                    </div>
+
+                    <div class="form-group col-lg-3">
+                        <label for="password">Password</label>
+                        <input type="text" class="form-control no-border-radius" id="password" name="password" placeholder="Password">
+                    </div>
+
+                    <div class="form-group col-lg-2">
+                        <button type="button" class="btn blue white-text btn-sm z-depth-1 margin-top-25" value="Add User" onclick="MakePassword()">
+                            <i class="fa fa-lock"></i>
+                            Generate
+                        </button>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="form-group col-lg-5">
+                        <label for="fname">First Name</label>
+                        <input type="text" class="form-control  no-border-radius" id="fname" name="fname" placeholder="First Name">
+                    </div>
+
+                    <div class="form-group col-lg-5">
+                        <label for="lname">Last Name</label>
+                        <input type="text" class="form-control  no-border-radius" id="lname" name="lname" placeholder="Last Name">
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="form-group col-lg-5">
+                        <input type="checkbox" id="chk_inform" name="chk_inform" value="inform"> Inform Member
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn green white-text z-depth-1 margin-left-15" id="submituser" name="submituser">Add User</button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block footer_scripts %}
+
+    {#<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js" type="text/javascript"></script>#}
+
+    {#<script type="text/javascript">#}
+        {#(function(){#}
+            {#angular.module('Membership', []);#}
+        {#})();#}
+    {#</script>#}
+
+    {#<script src="/assets/js/ng/adminmembers/IndexCtr.js" type="text/javascript"></script>#}
+    {#<script src="/assets/js/ng/adminmembers/IndexFactory.js" type="text/javascript"></script>#}
+
+<script type="text/javascript">
+
+    function MakePassword()
+    {
+        var count = 8;
+        var text = "";
+        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+        for( var i=0; i < count; i++ )
+            text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+        $('#password').val(text);
+        //return text;
+    }
+</script>
+{% endblock %}
