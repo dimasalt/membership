@@ -30,21 +30,39 @@ class TransactionHelper
         //search by
         if(!empty($search_by)) {
             $search_string =
-                "WHERE logs.username LIKE '%" . $search_by . "%' or 
-                    user_details.first_name LIKE '%" . $search_by . "%' or 
-                    user_details.last_name LIKE '%" . $search_by . "%' or 
-                    logs.page LIKE '%" . $search_by . "%' or 
-                    logs.action LIKE '%" . $search_by . "%'";
+                "WHERE order_transactions.txn_id LIKE '%" . $search_by . "%' or 
+                    order_transactions.item_name LIKE '%" . $search_by . "%' or 
+                    order_transactions.payment_source LIKE '%" . $search_by . "%' or 
+                    order_transactions.payment_status LIKE '%" . $search_by . "%' or 
+                    order_buyers.fname LIKE '%" . $search_by . "%' or
+                    order_buyers.lname LIKE '%" . $search_by . "%' or
+                    order_buyers.email LIKE '%" . $search_by . "%' or
+                    order_buyers.country LIKE '%" . $search_by . "%'";
+        }
+
+        //limit results by between dates
+        if(!empty($start_date) && !empty($end_date)){
+            if(empty($search_string)) {
+                "WHERE order_transactions.created_at >= " . $start_date . " and 
+                    order_transactions.created_at <= " . $end_date;
+            }
+            else {
+                " and (order_transactions.created_at >= " . $start_date . " and 
+                    order_transactions.created_at <= " . $end_date . ")";
+            }
         }
 
 
         //order by
         if($order_by == 'date' || empty($order_by))
-            $order_string = "ORDER BY logs.created_at DESC";
-        else if($order_by == 'page')
-            $order_string = "ORDER BY logs.page ASC";
-        else if($order_by == "user")
-            $order_string = "ORDER BY user_details.first_name ASC, user_details.last_name ASC";
+            $order_string = "ORDER BY order_transactions.created_at DESC";
+        else if($order_by == 'item_name')
+            $order_string = "ORDER BY order_transactions.item_name ASC";
+        else if($order_by == "country")
+            $order_string = "ORDER BY order_buyers.country ASC";
+        else if($order_by == "name")
+            $order_string = "ORDER BY order_buyers.fname ASC";
+
 
 
         //calculate limit and how many records to take
@@ -53,24 +71,6 @@ class TransactionHelper
 
         //finalize query
         $query =  $query . ' ' . $search_string . ' ' . $order_string . ' ' . $limit_string;
-
-
-        //        if($order_by == 'user')
-        //        {
-        //            $order_string = "ORDER BY logs.created_at DESC";
-        //            $variables = array($value);
-        //        }
-        //        else if($order_by == 'page')
-        //        {
-        //            $query = 'Select id, page, username, agent, ip, action FROM logs WHERE page = ? ORDER BY created_at DESC';
-        //            $variables = array($value);
-        //        }
-        //        else if($order_by == 'date')
-        //        {
-        //            $query = 'Select id, page, username, agent, ip, action FROM logs WHERE created_at >= ? and created_at <= ?  ORDER BY created_at DESC';
-        //            $variables = array($value, $value2);
-        //        }
-
 
 
         //perform the actual search
@@ -85,4 +85,54 @@ class TransactionHelper
         return $result;
     }
 
+
+    //counts total number of transactions based on search and order parameters
+    public function getTransactionsCount($search_by, $start_date, $end_date){
+        $search_string = '';
+
+        $query = "SELECT count(order_transactions.txn_id)
+                      FROM order_transactions 
+                      INNER JOIN order_buyers ON order_transactions.txn_id = order_buyers.txn_id";
+
+
+        //search by
+        if(!empty($search_by)) {
+            $search_string =
+                "WHERE order_transactions.txn_id LIKE '%" . $search_by . "%' or 
+                    order_transactions.item_name LIKE '%" . $search_by . "%' or 
+                    order_transactions.payment_source LIKE '%" . $search_by . "%' or 
+                    order_transactions.payment_status LIKE '%" . $search_by . "%' or 
+                    order_buyers.fname LIKE '%" . $search_by . "%' or
+                    order_buyers.lname LIKE '%" . $search_by . "%' or
+                    order_buyers.email LIKE '%" . $search_by . "%' or
+                    order_buyers.country LIKE '%" . $search_by . "%'";
+        }
+
+        //limit results by between dates
+        if(!empty($start_date) && !empty($end_date)){
+            if(empty($search_string)) {
+                "WHERE order_transactions.created_at >= " . $start_date . " and 
+                    order_transactions.created_at <= " . $end_date;
+            }
+            else {
+                " and (order_transactions.created_at >= " . $start_date . " and 
+                    order_transactions.created_at <= " . $end_date . ")";
+            }
+        }
+
+        //finalize query
+        $query =  $query . ' ' . $search_string;
+
+
+        //perform the actual search
+        $db = new DBConnection();
+        $pdo = $db->getPDO();
+
+        $stmt = $pdo->prepare($query);
+        $stmt->execute();
+
+        $result = $stmt->fetchAll(\PDO::FETCH_NUM);
+
+        return $result[0];
+    }
 }
