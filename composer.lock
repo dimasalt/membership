@@ -629,16 +629,16 @@
         },
         {
             "name": "slim/slim",
-            "version": "3.8.0",
+            "version": "3.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/slimphp/Slim.git",
-                "reference": "d462e5ba37fc2364d0955753caf18e866440ab43"
+                "reference": "5385302707530b2bccee1769613ad769859b826d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/slimphp/Slim/zipball/d462e5ba37fc2364d0955753caf18e866440ab43",
-                "reference": "d462e5ba37fc2364d0955753caf18e866440ab43",
+                "url": "https://api.github.com/repos/slimphp/Slim/zipball/5385302707530b2bccee1769613ad769859b826d",
+                "reference": "5385302707530b2bccee1769613ad769859b826d",
                 "shasum": ""
             },
             "require": {
@@ -696,7 +696,7 @@
                 "micro",
                 "router"
             ],
-            "time": "2017-03-18T12:06:07+00:00"
+            "time": "2017-03-19T17:55:20+00:00"
         },
         {
             "name": "stripe/stripe-php",
