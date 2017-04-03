@@ -1,5 +1,5 @@
 var Login = new Vue({
-    el: '#logs_panel',
+    el: '#transactions_panel',
     data: {
         transactions : [],
         start_date : '',
@@ -34,7 +34,7 @@ var Login = new Vue({
                     else self.page_count = 1;
                 }
                 else {
-                    self.logs = [];
+                    self.transactions = [];
                     self.page_count = 1;
                 }
             });

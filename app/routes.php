@@ -85,7 +85,8 @@ $app->group('/admin', function () {
     $this->get('/system/takesqlbackup', '\Membership\Area\Admin\SystemController:GetSqlBackup');
 
     //transactions
-    $this->get('/transactions/index', '\Membership\Area\Admin\TransactionController:index');
+    $this->get('/transactions', '\Membership\Area\Admin\TransactionController:index');
+    $this->post('/transactions/getTransactions', '\Membership\Area\Admin\TransactionController:getTransactions');
 })->add(new \Membership\Middleware\IsAdmin($app->getContainer()->get('router')));
 
 

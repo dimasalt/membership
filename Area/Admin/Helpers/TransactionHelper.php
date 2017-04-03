@@ -3,6 +3,8 @@
 namespace Area\Admin\Helpers;
 
 
+use Membership\Libraries\DBConnection;
+
 class TransactionHelper
 {
     //get all transactions withing date
