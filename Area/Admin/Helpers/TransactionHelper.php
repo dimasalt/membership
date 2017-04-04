@@ -43,14 +43,17 @@ class TransactionHelper
         }
 
         //limit results by between dates
+        $start_date = Date('Y-m-d', strtotime($start_date));
+        $end_date = Date('Y-m-d', strtotime($end_date));
+
         if(!empty($start_date) && !empty($end_date)){
             if(empty($search_string)) {
-                "WHERE order_transactions.created_at >= " . $start_date . " and 
-                    order_transactions.created_at <= " . $end_date;
+                $query = $query . " WHERE order_transactions.created_at >= '" . $start_date . "' and 
+                    order_transactions.created_at <= '" . $end_date . "'";
             }
             else {
-                " and (order_transactions.created_at >= " . $start_date . " and 
-                    order_transactions.created_at <= " . $end_date . ")";
+                $query = $query . " and (order_transactions.created_at >= '" . $start_date . "' and 
+                    order_transactions.created_at <= '" . $end_date . "'')";
             }
         }
 
@@ -64,7 +67,8 @@ class TransactionHelper
             $order_string = "ORDER BY order_buyers.country ASC";
         else if($order_by == "name")
             $order_string = "ORDER BY order_buyers.fname ASC";
-
+        else if($order_by == "email")
+            $order_string = "ORDER BY order_buyers.email ASC";
 
 
         //calculate limit and how many records to take
@@ -74,6 +78,8 @@ class TransactionHelper
         //finalize query
         $query =  $query . ' ' . $search_string . ' ' . $order_string . ' ' . $limit_string;
 
+
+        echo $query;
 
         //perform the actual search
         $db = new DBConnection();

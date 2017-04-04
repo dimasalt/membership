@@ -2,9 +2,7 @@
 
  {% block header_scripts %}
      <link rel="stylesheet" href="/Area/Admin/assets/css/checkbox.css" />
-
      <link rel="stylesheet" href="/assets/elements/daterangepicker/daterangepicker.css" />
-
      <link rel="stylesheet" href="/assets/elements/toastr/toastr.min.css" />
  {% endblock %}
 
@@ -37,14 +35,20 @@
                          <h2>Last Transactions</h2>
                          <ul class="nav navbar-right panel_toolbox">
                              <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                             <li><a class="close-link"><i class="fa fa-calendar" aria-hidden="true"></i></a></li>
+                             {#<li><a class="close-link"><i class="fa fa-calendar" aria-hidden="true"></i></a></li>#}
+                             <li>
+                                 <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 220px; height: 30px;">
+                                     <i class="glyphicon glyphicon-calendar fa fa-calendar pull-right"></i>&nbsp; <span></span>
+                                     {#<span></span> <b class="caret"></b>#}
+                                 </div>
+                             </li>
                              <li class="dropdown">
                                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-sort"></i></a>
                                  <ul class="dropdown-menu" role="menu">
                                      <li><a href="#" v-on:click="OrderBy('date')">Sort by date</a></li>
                                      <li><a href="#" v-on:click="OrderBy('name')">Sort by name</a></li>
                                      <li><a href="#" v-on:click="OrderBy('email')">Sort by email</a></li>
-                                     <li><a href="#" v-on:click="OrderBy('date')">Sort by date</a></li>
+                                     <li><a href="#" v-on:click="OrderBy('item_name')">Sort by item name</a></li>
                                  </ul>
                              </li>
                              <li><a class="close-link"><i class="fa fa-close"></i></a></li>
@@ -125,11 +129,13 @@
  {% block footer_scripts %}
 
      <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.1/vue.js" type="text/javascript" ></script>
-     <script src="/Area/Admin/assets/js/vuejs/transactions/index.js"></script>
 
      <!-- date range picker -->
      <script src="/assets/elements/daterangepicker/moment.min.js"></script>
      <script src="/assets/elements/daterangepicker/daterangepicker.js"></script>
+
+     <!-- page functionality -->
+     <script src="/Area/Admin/assets/js/vuejs/transactions/index.js"></script>
 
      <script src="/assets/elements/toastr/toastr.min.js"></script>
 
