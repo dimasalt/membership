@@ -90,6 +90,12 @@ class TransactionHelper
 
         $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
+        //format numbers and dates
+        for($i = 0; $i < count($result); $i++) {
+            $result[$i]['amount'] = number_format($result[$i]['amount'], 2);
+            $result[$i]['created_at'] = date('M d, Y', strtotime($result[$i]['created_at']));
+        }
+
         return $result;
     }
 

@@ -16,7 +16,8 @@ var Transactions = new Vue({
         self.start_date = moment().subtract(29, 'days');
         self.end_date = moment();
 
-        $('#reportrange span').html(self.start_date.format('MMMM D, YYYY') + ' - ' + self.end_date.format('MMMM D, YYYY'));
+        //$('#reportrange span').html(self.start_date.format('MMMM D, YYYY') + ' - ' + self.end_date.format('MMMM D, YYYY'));
+        $('#daterange').text('(' + self.start_date.format('MMMM D, YYYY') + ' - ' + self.end_date.format('MMMM D, YYYY') + ')');
 
         this.getTransactions();
     },
@@ -95,7 +96,8 @@ var Transactions = new Vue({
                 self.start_date = start.format('L');
                 self.end_date =  end.format('L');
 
-                $('#reportrange span').html(start.format('MMM D, YYYY') + ' - ' + end.format('MMM D, YYYY'));
+                //$('#reportrange span').html(start.format('MMM D, YYYY') + ' - ' + end.format('MMM D, YYYY'));
+                $('#daterange').text('(' + start.format('MMM D, YYYY') + ' - ' + end.format('MMM D, YYYY') + ')');
 
                 self.getTransactions();
             });
