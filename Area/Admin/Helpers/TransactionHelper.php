@@ -79,7 +79,7 @@ class TransactionHelper
         $query =  $query . ' ' . $search_string . ' ' . $order_string . ' ' . $limit_string;
 
 
-        echo $query;
+        //echo $query;
 
         //perform the actual search
         $db = new DBConnection();

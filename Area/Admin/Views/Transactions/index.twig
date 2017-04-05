@@ -37,8 +37,11 @@
                              <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                              {#<li><a class="close-link"><i class="fa fa-calendar" aria-hidden="true"></i></a></li>#}
                              <li>
-                                 <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 220px; height: 30px;">
-                                     <i class="glyphicon glyphicon-calendar fa fa-calendar pull-right"></i>&nbsp; <span></span>
+                                 <div id="reportrange" class="pull-right"
+                                            style="background: #fff; cursor: pointer; padding: 5px 10px; border: 0px solid #ccc; width: 220px;
+                                            height: 30px; margin-left: 5px; margin-right: 5px;">
+                                     <i class="glyphicon glyphicon-calendar fa fa-calendar pull-right" v-on:click="openDateRange()"></i>&nbsp;
+                                     <span></span>
                                      {#<span></span> <b class="caret"></b>#}
                                  </div>
                              </li>

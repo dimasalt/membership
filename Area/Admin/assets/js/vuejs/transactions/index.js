@@ -11,7 +11,14 @@ var Transactions = new Vue({
         search_by: ''
     },
     created: function () {
-        //this.getTransactions();
+        var self = this;
+
+        self.start_date = moment().subtract(29, 'days');
+        self.end_date = moment();
+
+        $('#reportrange span').html(self.start_date.format('MMMM D, YYYY') + ' - ' + self.end_date.format('MMMM D, YYYY'));
+
+        this.getTransactions();
     },
     methods: {
         getTransactions: function () {
@@ -61,46 +68,72 @@ var Transactions = new Vue({
             var self = this;
 
             self.getTransactions();
+        },
+        openDateRange: function () {
+            var self = this;
+
+            $('#reportrange').daterangepicker({
+                startDate: self.start_date,
+                endDate: self.end_date,
+                ranges: {
+                    'Today': [moment(), moment()],
+                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                    'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
+                    '2016': [moment('2016-01-01'), moment('2016-12-31')],
+                    '2017': [moment('2017-01-01'), moment('2017-12-31')]
+                }
+            }, function(start, end, label) {
+                //formating date with moment JS
+                //console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
+
+                // self.start_date = start._d.getDate() + '/' + start._d.getMonth() + '/' + start._d.getFullYear();
+                // self.end_date =  end._d.getDate() + '/' + end._d.getMonth() + '/' + end._d.getFullYear();
+
+                self.start_date = start.format('L');
+                self.end_date =  end.format('L');
+
+                $('#reportrange span').html(start.format('MMM D, YYYY') + ' - ' + end.format('MMM D, YYYY'));
+
+                self.getTransactions();
+            });
         }
     }
 });
 
 
-$(document).ready(function () {
-    var start = moment().subtract(29, 'days');
-    var end = moment();
-
-    function cb(start, end) {
-        $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-
-        Transactions.start_date = start.format('DD/MM/YYYY');
-        Transactions.end_date = end.format('DD/MM/YYYY');
-
-        Transactions.getTransactions();
-    }
-
-    $('#reportrange').daterangepicker({
-        startDate: start,
-        endDate: end,
-        ranges: {
-            'Today': [moment(), moment()],
-            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-            'This Month': [moment().startOf('month'), moment().endOf('month')],
-            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-        }
-    }, cb);
-
-    cb(start, end);
-
-    $('#reportrange span').change(function () {
-        Transactions.start_date = start.format('DD/MM/YYYY');;
-        Transactions.end_date = end.format('DD/MM/YYYY');;
-
-        Transactions.getTransactions();
-    });
-
-
-});
+// $(document).ready(function () {
+//     var start = moment().subtract(29, 'days');
+//     var end = moment();
+//
+//     function cb(start, end) {
+//         $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+//     }
+//
+//     $('#reportrange').daterangepicker({
+//         startDate: start,
+//         endDate: end,
+//         ranges: {
+//             'Today': [moment(), moment()],
+//             'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+//             'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+//             'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+//             'This Month': [moment().startOf('month'), moment().endOf('month')],
+//             'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+//         }
+//     }, cb);
+//
+//     cb(start, end);
+//
+//     $('#reportrange span').change(function () {
+//         Transactions.start_date = start.format('DD/MM/YYYY');
+//         Transactions.end_date = end.format('DD/MM/YYYY');
+//
+//         Transactions.getTransactions();
+//     });
+//
+//
+// });
 
