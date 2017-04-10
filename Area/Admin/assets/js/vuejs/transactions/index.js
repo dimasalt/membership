@@ -2,6 +2,7 @@ var Transactions = new Vue({
     el: '#transactions_panel',
     data: {
         transactions : [],
+        today_transactions : [],
         start_date : '',
         end_date : '',
         page: 1,
@@ -16,12 +17,31 @@ var Transactions = new Vue({
         self.start_date = moment().subtract(29, 'days');
         self.end_date = moment();
 
-        //$('#reportrange span').html(self.start_date.format('MMMM D, YYYY') + ' - ' + self.end_date.format('MMMM D, YYYY'));
         $('#daterange').text('(' + self.start_date.format('MMMM D, YYYY') + ' - ' + self.end_date.format('MMMM D, YYYY') + ')');
 
-        this.getTransactions();
+        self.getTransactions();
+        self.getTodayTransactions();
     },
     methods: {
+        getTodayTransactions: function () {
+            var self = this;
+
+            var data = {};
+            data = JSON.stringify(data); // $.param({ 'id': ticket_id });
+
+            var trans = $.post("/admin/transactions/getTodayTransactions", data);
+
+            trans.done(function (data) {
+                if (data.today_transactions.length > 0) {
+                    self.today_transactions = data.today_transactions;
+                }
+            });
+
+            trans.always(function () {
+                // // Reenable the inputs
+                // $('input').prop( "disabled", false );
+            });
+        },
         getTransactions: function () {
             var self = this;
 

@@ -87,6 +87,7 @@ $app->group('/admin', function () {
     //transactions
     $this->get('/transactions', '\Membership\Area\Admin\TransactionController:index');
     $this->post('/transactions/getTransactions', '\Membership\Area\Admin\TransactionController:getTransactions');
+    $this->post('/transactions/getTodayTransactions', '\Membership\Area\Admin\TransactionController:getTodayTransactions');
 })->add(new \Membership\Middleware\IsAdmin($app->getContainer()->get('router')));
 
 

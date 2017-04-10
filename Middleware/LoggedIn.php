@@ -24,7 +24,7 @@ class LoggedIn
         // ------------ BEFORE ACTION ---------------------
         //if page is only for authorized users and our member
         //is not logged in then redirect to login page
-        if(isset($_SESSION["token"]) || isset($_COOKIE['token']))
+        if(isset($_SESSION["token"]))
         {
             $response = $next($request, $response);
             return $response;

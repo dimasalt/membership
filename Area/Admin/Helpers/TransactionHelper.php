@@ -149,4 +149,31 @@ class TransactionHelper
 
         return $result[0];
     }
+
+    //today transactions
+    public function getTodayTransactions()
+    {
+        //perform the actual search
+        $db = new DBConnection();
+        $pdo = $db->getPDO();
+
+        $stmt = $pdo->prepare('
+                                  SELECT order_buyers.fname, order_buyers.lname, order_transactions.item_name, order_transactions.amount
+                                  FROM order_buyers 
+                                  INNER JOIN order_transactions ON order_transactions.txn_id = order_buyers.txn_id
+                                  WHERE DATE(order_buyers.created_at) = DATE(now())
+                                  ORDER BY order_buyers.created_at DESC 
+                                  LIMIT 0, 5
+                              ');
+        $stmt->execute();
+
+        $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+        //format amount
+        for($i = 0; $i < count($result); $i++) {
+            $result[$i]['amount'] = number_format($result[$i]['amount'], 2);
+        }
+
+        return $result;
+    }
 }
