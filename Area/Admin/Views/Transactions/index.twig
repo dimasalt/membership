@@ -315,8 +315,8 @@
                      label: "Transactions",
                      fill: false,
                      lineTension: 0.1,
+                     fillColor: "rgba(220,220,220,0.2)",
                      backgroundColor: "rgba(75,192,192,0.4)",
-//                     borderColor: "rgba(75,192,192,1)",
                      borderColor: "rgba(75,192,192,1)",
                      borderCapStyle: 'butt',
                      borderDash: [],
@@ -338,22 +338,22 @@
                      label: "Refunds",
                      fill: false,
                      lineTension: 0.1,
-                     backgroundColor: "rgba(225,31,17,0.4)",
-                     borderColor: "rgba(225,31,17,1)",
+                     backgroundColor: "rgba(225,103,102,0.4)",
+                     borderColor: "rgba(225,103,102,1)",
                      borderCapStyle: 'butt',
                      borderDash: [],
                      borderDashOffset: 0.0,
                      borderJoinStyle: 'miter',
-                     pointBorderColor: "rgba(225,31,17,1)",
+                     pointBorderColor: "rgba(225,103,102,1)",
                      pointBackgroundColor: "#fff",
                      pointBorderWidth: 7,
                      pointHoverRadius: 5,
-                     pointHoverBackgroundColor: "rgba(225,31,17,1)",
-                     pointHoverBorderColor: "rgba(225,31,17,1)",
+                     pointHoverBackgroundColor: "rgba(225,103,102,1)",
+                     pointHoverBorderColor: "rgba(225,103,102,1)",
                      pointHoverBorderWidth: 2,
                      pointRadius: 1,
                      pointHitRadius: 10,
-                     data: [2, 90, 75, 60, 11, 40, 20],
+                     data: [2, 76, 75, 60, 11, 40, 20],
                      spanGaps: false,
                  }
              ]
@@ -367,7 +367,8 @@
 
          var myLineChart = Chart.Line(ctx, {
              data: data,
-             options: options
+             options: options,
+             tooltipTemplate: "<%if (label){ %><%= label.long %> : <%}%><%= value %>",
          });
      </script>
 
