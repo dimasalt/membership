@@ -32,6 +32,7 @@ class HomeController extends BaseController
                         }
                     }
                 }
+                unset($program);
             }
         }
 
