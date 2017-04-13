@@ -98,8 +98,8 @@ class AuthenticationTokens
         $stmt = $pdo->prepare('Delete From user_logins Where updated_at < (NOW() - INTERVAL 14 DAY)');
         $stmt->execute();
 
-//        $result = $stmt->rowCount();
-//        if($result > 0) return true;
-//        else return false;
+        //        $result = $stmt->rowCount();
+        //        if($result > 0) return true;
+        //        else return false;
     }
 }

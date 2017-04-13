@@ -17,7 +17,6 @@ class Authentication
     {
         if(isset($_COOKIE["token"]) && !empty($_COOKIE["token"]))
         {
-            //$acHelper = new Helpers\AccountHelper();
             $auHelper = new AuthenticationTokens();
 
             $current_token = $_COOKIE["token"];
