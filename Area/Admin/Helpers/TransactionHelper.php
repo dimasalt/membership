@@ -150,6 +150,49 @@ class TransactionHelper
         return $result[0];
     }
 
+
+    public function getTransactionStats($start_date, $end_date)
+    {
+        $start_date = Date('Y-m-d', strtotime($start_date));
+        $end_date = Date('Y-m-d', strtotime($end_date));
+
+        $db = new DBConnection();
+        $pdo = $db->getPDO();
+
+//        $query = '
+//        Select
+//        (Select count(txn_id) from order_transactions where order_transactions.created_at >= DATE('2016-01-01') and order_transactions.created_at <= DATE('2017-01-01')) as transactions,
+//        (Select count(txn_id) from order_transactions where payment_status NOT LIKE 'Refunded' and order_transactions.created_at >= DATE('2016-01-01') and order_transactions.created_at <= DATE('2017-01-01')) as sales_num,
+//        (Select IFNULL(sum(amount),0) from order_transactions where payment_status NOT LIKE 'Refunded' and order_transactions.created_at >= DATE('2016-01-01') and order_transactions.created_at <= DATE('2017-01-01')) as sales,
+//        (Select IFNULL(sum(amount),0) from order_transactions where payment_status LIKE 'Refunded' and order_transactions.created_at >= DATE('2016-01-01') and order_transactions.created_at <= DATE('2017-01-01')) as refunds
+//        ';
+
+
+        $stmt = $pdo->prepare("              
+            Select count(txn_id) as transaction_num from order_transactions where order_transactions.created_at >= DATE(':start_date') and order_transactions.created_at <= DATE(':end_date')
+            -- Select count(txn_id) as sales_num from order_transactions where payment_status NOT LIKE 'Refunded' and order_transactions.created_at >= DATE(':start_date') and order_transactions.created_at <= DATE(':end_date');
+        ");
+
+//        $stmt = $pdo->prepare('
+//             Select
+//                (Select count(txn_id) from order_transactions where order_transactions.created_at >= DATE(:start_date) and order_transactions.created_at <= DATE(:end_date)) as transactions,
+//                (Select count(txn_id) from order_transactions where payment_status NOT LIKE \'Refunded\' and order_transactions.created_at >= DATE(:start_date) and order_transactions.created_at <= DATE(:end_date)) as sales_num,
+//                (Select IFNULL(sum(amount),0) from order_transactions where payment_status NOT LIKE \'Refunded\' and order_transactions.created_at >= DATE(:start_date) and order_transactions.created_at <= DATE(:end_date)) as sales,
+//                (Select IFNULL(sum(amount),0) from order_transactions where payment_status LIKE \'Refunded\' and order_transactions.created_at >= DATE(:start_date) and order_transactions.created_at <= DATE(:end_date)) as refunds
+//         ');
+
+        $stmt->execute([
+            ':start_date' => $start_date,
+            ':end_date' => $end_date
+        ]);
+
+
+        var_dump($stmt->queryString);
+
+        $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     //today transactions
     public function getTodayTransactions()
     {

@@ -12,6 +12,7 @@ class TransactionController extends BaseController
         return $this->getView()->render('Transactions/index.twig');
     }
 
+
     //get transaction statistic for specific time period
     public function getTransactionStats($request, $response, $args){
         $request_args = json_decode( file_get_contents('php://input') );
@@ -19,10 +20,15 @@ class TransactionController extends BaseController
         $start_date = $request_args->start_date;
         $end_date = $request_args->end_date;
 
-        var_dump($start_date);
+        $transHelper = new TransactionHelper();
+        $transaction_stats = $transHelper->getTransactionStats($start_date, $end_date);
+
+        return $response->withJson([
+            'transaction_stats' => $transaction_stats
+        ], 200);
 
         //calculate amount of days
-        $datediff = (strtotime($end_date) - strtotime($start_date)) / (60 * 60 * 24);
+        //$datediff = (strtotime($end_date) - strtotime($start_date)) / (60 * 60 * 24);
     }
 
     //get all transactions within specific dates

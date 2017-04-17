@@ -3,6 +3,7 @@ var Transactions = new Vue({
     data: {
         transactions : [],
         today_transactions : [],
+        transaction_stats : {},
         start_date : '',
         end_date : '',
         page: 1,
@@ -68,6 +69,26 @@ var Transactions = new Vue({
             });
 
             trans.always(function () {
+                // // Reenable the inputs
+                // $('input').prop( "disabled", false );
+            });
+
+            self.getTransactionStats();
+        },
+        getTransactionStats : function () {
+            var self = this;
+
+            var data = {start_date: self.start_date, end_date: self.end_date};
+            data = JSON.stringify(data); // $.param({ 'id': ticket_id });
+
+            var stats = $.post("/admin/transactions/getTransactionStats", data);
+
+            stats.done(function (data) {
+                if (data.transaction_stats.length > 0)
+                    self.transaction_stats = data.transaction_stats;
+            });
+
+            stats.always(function () {
                 // // Reenable the inputs
                 // $('input').prop( "disabled", false );
             });
