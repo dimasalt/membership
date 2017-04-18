@@ -22,6 +22,7 @@ var Transactions = new Vue({
 
         self.getTransactions();
         self.getTodayTransactions();
+        self.getTransactionStats();
     },
     methods: {
         getTodayTransactions: function () {
@@ -83,7 +84,7 @@ var Transactions = new Vue({
 
             stats.done(function (data) {
                 if (data.transaction_stats.length > 0)
-                    self.transaction_stats = data.transaction_stats;
+                    self.transaction_stats = data.transaction_stats[0];
             });
 
             stats.always(function () {

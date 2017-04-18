@@ -157,8 +157,8 @@ class TransactionHelper
         $start_date = Date('Y-m-d', strtotime($start_date));
         $end_date = Date('Y-m-d', strtotime($end_date));
 
-        $query = "       
-              SELECT
+        $query = "
+            SELECT
               (Select count(txn_id) from order_transactions where order_transactions.created_at >= '" . $start_date . "' and order_transactions.created_at <= '" . $end_date . "') as transaction_count,
               (Select count(txn_id) from order_transactions where order_transactions.payment_status NOT LIKE 'Refunded' and (order_transactions.created_at >= '" . $start_date . "' and order_transactions.created_at <= '" . $end_date . "')) as sales_num,              
               (Select IFNULL(sum(amount),0) from order_transactions where order_transactions.payment_status NOT LIKE 'Refunded' and (order_transactions.created_at >= '" . $start_date . "' and order_transactions.created_at <= '" . $end_date . "')) as sales,
