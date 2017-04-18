@@ -72,8 +72,6 @@ var Transactions = new Vue({
                 // // Reenable the inputs
                 // $('input').prop( "disabled", false );
             });
-
-            self.getTransactionStats();
         },
         getTransactionStats : function () {
             var self = this;
@@ -141,6 +139,7 @@ var Transactions = new Vue({
                 $('#daterange').text('(' + start.format('MMM D, YYYY') + ' - ' + end.format('MMM D, YYYY') + ')');
 
                 self.getTransactions();
+                self.getTransactionStats();
             });
         }
     }

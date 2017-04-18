@@ -9,6 +9,7 @@ class TransactionController extends BaseController
 {
     public function index($request, $response, $args)
     {
+        //$this->getTransactionStatsNoJSON();
         return $this->getView()->render('Transactions/index.twig');
     }
 
@@ -26,6 +27,19 @@ class TransactionController extends BaseController
         return $response->withJson([
             'transaction_stats' => $transaction_stats
         ], 200);
+
+        //calculate amount of days
+        //$datediff = (strtotime($end_date) - strtotime($start_date)) / (60 * 60 * 24);
+    }
+
+    //get transaction statistic for specific time period
+    public function getTransactionStatsNoJSON(){
+
+        $start_date = '2016-01-01';
+        $end_date = '2016-12-31';
+
+        $transHelper = new TransactionHelper();
+        $transaction_stats = $transHelper->getTransactionStats($start_date, $end_date);
 
         //calculate amount of days
         //$datediff = (strtotime($end_date) - strtotime($start_date)) / (60 * 60 * 24);
