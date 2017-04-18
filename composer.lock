@@ -130,16 +130,16 @@
         },
         {
             "name": "braintree/braintree_php",
-            "version": "3.22.0",
+            "version": "3.23.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/braintree/braintree_php.git",
-                "reference": "402617b803779bed5ae899209afa75ef9950becc"
+                "reference": "0614d169e3ef8a9b16a90367f8a66bdd9f5a9df6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/braintree/braintree_php/zipball/402617b803779bed5ae899209afa75ef9950becc",
-                "reference": "402617b803779bed5ae899209afa75ef9950becc",
+                "url": "https://api.github.com/repos/braintree/braintree_php/zipball/0614d169e3ef8a9b16a90367f8a66bdd9f5a9df6",
+                "reference": "0614d169e3ef8a9b16a90367f8a66bdd9f5a9df6",
                 "shasum": ""
             },
             "require": {
@@ -173,7 +173,7 @@
                 }
             ],
             "description": "Braintree PHP Client Library",
-            "time": "2017-02-16T19:59:04+00:00"
+            "time": "2017-04-13T20:06:18+00:00"
         },
         {
             "name": "container-interop/container-interop",
