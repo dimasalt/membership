@@ -50,16 +50,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.26.3",
+            "version": "3.26.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "a843acca973557ca4fefb7e4d407e6312ff0b9ed"
+                "reference": "5fd52d91aa168134f13a57df7fbf7d1f7b7a85ca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/a843acca973557ca4fefb7e4d407e6312ff0b9ed",
-                "reference": "a843acca973557ca4fefb7e4d407e6312ff0b9ed",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/5fd52d91aa168134f13a57df7fbf7d1f7b7a85ca",
+                "reference": "5fd52d91aa168134f13a57df7fbf7d1f7b7a85ca",
                 "shasum": ""
             },
             "require": {
@@ -126,7 +126,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2017-04-26T17:47:01+00:00"
+            "time": "2017-04-28T23:15:22+00:00"
         },
         {
             "name": "braintree/braintree_php",
