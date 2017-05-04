@@ -3,6 +3,7 @@
 namespace Area\Admin\Helpers;
 
 
+use function FastRoute\TestFixtures\empty_options_cached;
 use Membership\Libraries\DBConnection;
 
 class TransactionHelper
@@ -198,6 +199,82 @@ class TransactionHelper
         for($i = 0; $i < count($result); $i++) {
             $result[$i]['amount'] = number_format($result[$i]['amount'], 2);
         }
+
+        return $result;
+    }
+
+    //gets transaction statistics
+    public function getTransactionsGraph($search_by, $start_date, $end_date)
+    {
+        $search_string = '';
+        $sql_date = '';
+
+        //check time diff between two dates
+        $s_date = new \DateTime($start_date);
+        $e_date = new \DateTime($end_date);
+        $interval = $e_date->diff($s_date);
+
+        //set mysql parameter to extract
+        if($interval->m > 1) $sql_date = 'YEAR_MONTH';
+        else if($interval->y > 1) $sql_date = 'YEAR';
+        else $sql_date = 'DATE';
+
+
+        $query = "SELECT sum(order_transactions.amount) as money,                          
+                        EXTRACT(" . $sql_date ." from order_transactions.created_at) as date                        
+                      FROM order_transactions 
+                      INNER JOIN order_buyers ON order_transactions.txn_id = order_buyers.txn_id";
+        //ORDER BY logs.created_at DESC";
+
+
+        //search by
+        if(!empty($search_by)) {
+            $search_string =
+                "WHERE order_transactions.txn_id LIKE '%" . $search_by . "%' or 
+                    order_transactions.item_name LIKE '%" . $search_by . "%' or 
+                    order_transactions.payment_source LIKE '%" . $search_by . "%' or 
+                    order_transactions.payment_status LIKE '%" . $search_by . "%' or 
+                    order_buyers.fname LIKE '%" . $search_by . "%' or
+                    order_buyers.lname LIKE '%" . $search_by . "%' or
+                    order_buyers.email LIKE '%" . $search_by . "%' or
+                    order_buyers.country LIKE '%" . $search_by . "%'";
+        }
+
+        //limit results by between dates
+        $start_date = Date('Y-m-d', strtotime($start_date));
+        $end_date = Date('Y-m-d', strtotime($end_date));
+
+        if(!empty($start_date) && !empty($end_date)){
+            if(empty($search_string)) {
+                $query = $query . " WHERE order_transactions.created_at >= '" . $start_date . "' and 
+                    order_transactions.created_at <= '" . $end_date . "'";
+            }
+            else {
+                $query = $query . " and (order_transactions.created_at >= '" . $start_date . "' and 
+                    order_transactions.created_at <= '" . $end_date . "'')";
+            }
+        }
+
+        //set group by and order by
+        if(!empty($query))
+            $query = $query . " Group by order_transactions.created_at Order By order_transactions.created_at ASC";
+
+
+
+        //perform the actual search
+        $db = new DBConnection();
+        $pdo = $db->getPDO();
+
+        $stmt = $pdo->prepare($query);
+        $stmt->execute();
+
+        $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+        //format numbers and dates
+        //        for($i = 0; $i < count($result); $i++) {
+        //            $result[$i]['amount'] = number_format($result[$i]['amount'], 2);
+        //            $result[$i]['created_at'] = date('M d, Y', strtotime($result[$i]['created_at']));
+        //        }
 
         return $result;
     }
