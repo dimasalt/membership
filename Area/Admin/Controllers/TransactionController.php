@@ -9,6 +9,10 @@ class TransactionController extends BaseController
 {
     public function index($request, $response, $args)
     {
+        $transHelper = new TransactionHelper();
+        $transaction_chart = $transHelper->getTransactionsGraph('', "01-01-2016", "31-12-2016");
+//        var_dump($transaction_chart);
+
         //$this->getTransactionStatsNoJSON();
         return $this->getView()->render('Transactions/index.twig');
     }

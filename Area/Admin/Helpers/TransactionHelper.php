@@ -207,7 +207,8 @@ class TransactionHelper
     public function getTransactionsGraph($search_by, $start_date, $end_date)
     {
         $search_string = '';
-        $sql_date = '';
+        $sql_date = 'DATE_FORMAT(order_transactions.created_at,\'%d/%m/%Y\')'; //regular date format
+
 
         //check time diff between two dates
         $s_date = new \DateTime($start_date);
@@ -215,17 +216,17 @@ class TransactionHelper
         $interval = $e_date->diff($s_date);
 
         //set mysql parameter to extract
-        if($interval->m > 1) $sql_date = 'YEAR_MONTH';
-        else if($interval->y > 1) $sql_date = 'YEAR';
-        else $sql_date = 'DATE';
+        if($interval->m > 1)
+            $sql_date = 'DATE_FORMAT(order_transactions.created_at,\'%m/%Y\')';
+        else if($interval->y > 1)
+            $sql_date = 'DATE_FORMAT(order_transactions.created_at,\'%Y\')';
 
 
-        $query = "SELECT sum(order_transactions.amount) as money,                          
-                        EXTRACT(" . $sql_date ." from order_transactions.created_at) as date                        
-                      FROM order_transactions 
-                      INNER JOIN order_buyers ON order_transactions.txn_id = order_buyers.txn_id";
-        //ORDER BY logs.created_at DESC";
+        $query = "SELECT sum(order_transactions.amount) as money, " . $sql_date . " as date 
+                   FROM order_transactions INNER JOIN order_buyers ON order_transactions.txn_id = order_buyers.txn_id";
+                    //ORDER BY logs.created_at DESC";
 
+        //var_dump($query);
 
         //search by
         if(!empty($search_by)) {
@@ -257,8 +258,7 @@ class TransactionHelper
 
         //set group by and order by
         if(!empty($query))
-            $query = $query . " Group by order_transactions.created_at Order By order_transactions.created_at ASC";
-
+            $query = $query . " Group by " . $sql_date . " Order By " . $sql_date . " ASC";
 
 
         //perform the actual search
@@ -270,11 +270,7 @@ class TransactionHelper
 
         $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
-        //format numbers and dates
-        //        for($i = 0; $i < count($result); $i++) {
-        //            $result[$i]['amount'] = number_format($result[$i]['amount'], 2);
-        //            $result[$i]['created_at'] = date('M d, Y', strtotime($result[$i]['created_at']));
-        //        }
+        var_dump($result);
 
         return $result;
     }
