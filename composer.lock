@@ -50,16 +50,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.34.0",
+            "version": "3.35.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "df7ddca6872048cc91315c2b4fdb9a57d5fceb84"
+                "reference": "e9691180888d2679b24cbad1f805e48aadd1a346"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/df7ddca6872048cc91315c2b4fdb9a57d5fceb84",
-                "reference": "df7ddca6872048cc91315c2b4fdb9a57d5fceb84",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/e9691180888d2679b24cbad1f805e48aadd1a346",
+                "reference": "e9691180888d2679b24cbad1f805e48aadd1a346",
                 "shasum": ""
             },
             "require": {
@@ -126,20 +126,20 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2017-08-22T18:32:28+00:00"
+            "time": "2017-08-25T23:24:46+00:00"
         },
         {
             "name": "braintree/braintree_php",
-            "version": "3.24.0",
+            "version": "3.25.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/braintree/braintree_php.git",
-                "reference": "c0e856104f95a75c08db4af5b5ace8fe0e80e573"
+                "reference": "8c8785b8876d5b2f4b4f78c5768ad245a7c43feb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/braintree/braintree_php/zipball/c0e856104f95a75c08db4af5b5ace8fe0e80e573",
-                "reference": "c0e856104f95a75c08db4af5b5ace8fe0e80e573",
+                "url": "https://api.github.com/repos/braintree/braintree_php/zipball/8c8785b8876d5b2f4b4f78c5768ad245a7c43feb",
+                "reference": "8c8785b8876d5b2f4b4f78c5768ad245a7c43feb",
                 "shasum": ""
             },
             "require": {
@@ -173,7 +173,7 @@
                 }
             ],
             "description": "Braintree PHP Client Library",
-            "time": "2017-08-10T16:54:00+00:00"
+            "time": "2017-08-25T19:38:09+00:00"
         },
         {
             "name": "container-interop/container-interop",
