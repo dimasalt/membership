@@ -10,8 +10,6 @@ $app->group('/account', function () {
     $this->post('/getpassword', '\Membership\Controllers\AccountController:GetPassword');
 })->add(new \Membership\Middleware\NotLoggedIn());
 
-//$app->post('/account/register', '\Membership\Controllers\AccountController:Register'); //temporary commented out
-
 
 //--------------------------------------------------
 //              user profile pages
@@ -47,8 +45,6 @@ $app->get('/program/index/{program_id}', '\Membership\Controllers\ProgramControl
 $app->group('/program', function (){
     $this->get('/item/{program_id}/{item_id}', '\Membership\Controllers\ProgramController:DisplayItem');
     $this->post('/download', '\Membership\Controllers\ProgramController:DownloadFile'); //ajax
-
-//    $this->get('/download/{program_id}/{file_id}', '\Membership\Controllers\ProgramController:DownloadFile');
 })->add(new Membership\Middleware\HasAccessToProgram($app->getContainer()->get('router')));
 
 
@@ -84,8 +80,11 @@ $app->group('/admin', function () {
     $this->get('/system/sqlbackup', '\Membership\Area\Admin\SystemController:SQLBackup');
     $this->get('/system/takesqlbackup', '\Membership\Area\Admin\SystemController:GetSqlBackup');
 
-    //transactions
-    $this->get('/transactions/index', '\Membership\Area\Admin\TransactionController:index');
+    //transactions page
+    $this->get('/transactions', '\Membership\Area\Admin\TransactionController:index');
+    $this->post('/transactions/getTransactions', '\Membership\Area\Admin\TransactionController:getTransactions');
+    $this->post('/transactions/getTodayTransactions', '\Membership\Area\Admin\TransactionController:getTodayTransactions');
+    $this->post('/transactions/getTransactionStats', '\Membership\Area\Admin\TransactionController:getTransactionStats');
 })->add(new \Membership\Middleware\IsAdmin($app->getContainer()->get('router')));
 
 

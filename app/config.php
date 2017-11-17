@@ -9,7 +9,7 @@ return array(
         "host" => "localhost",
         "database" => "membership",
         "username" => "root",
-        "password" => "",
+        "password" => "30e8a496f64cbf231",
     ),
     "mail" => array(
         "host" => 'smtp.zoho.com',

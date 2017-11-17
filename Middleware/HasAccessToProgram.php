@@ -35,7 +35,7 @@ class HasAccessToProgram
         if($program_info['is_free'] == 1) {
             return $next($request, $response);
         }
-        else if(isset($_SESSION['token']) && isset($_COOKIE['token'])) //if admin or has access to program
+        else if(isset($_SESSION['token'])) //if admin or has access to program
         {
             $achelper = new Helpers\AccountHelper();
             $user = $achelper->getUserByToken($_SESSION['token']);

@@ -1,7 +1,9 @@
-var Login = new Vue({
-    el: '#logs_panel',
+var Transactions = new Vue({
+    el: '#transactions_panel',
     data: {
         transactions : [],
+        today_transactions : [],
+        transaction_stats : {},
         start_date : '',
         end_date : '',
         page: 1,
@@ -11,9 +13,37 @@ var Login = new Vue({
         search_by: ''
     },
     created: function () {
-        this.getTransactions();
+        var self = this;
+
+        self.start_date = moment().subtract(29, 'days');
+        self.end_date = moment();
+
+        $('#daterange').text('(' + self.start_date.format('MMMM D, YYYY') + ' - ' + self.end_date.format('MMMM D, YYYY') + ')');
+
+        self.getTransactions();
+        self.getTodayTransactions();
+        self.getTransactionStats();
     },
     methods: {
+        getTodayTransactions: function () {
+            var self = this;
+
+            var data = {};
+            data = JSON.stringify(data); // $.param({ 'id': ticket_id });
+
+            var trans = $.post("/admin/transactions/getTodayTransactions", data);
+
+            trans.done(function (data) {
+                if (data.today_transactions.length > 0) {
+                    self.today_transactions = data.today_transactions;
+                }
+            });
+
+            trans.always(function () {
+                // // Reenable the inputs
+                // $('input').prop( "disabled", false );
+            });
+        },
         getTransactions: function () {
             var self = this;
 
@@ -34,12 +64,30 @@ var Login = new Vue({
                     else self.page_count = 1;
                 }
                 else {
-                    self.logs = [];
+                    self.transactions = [];
                     self.page_count = 1;
                 }
             });
 
             trans.always(function () {
+                // // Reenable the inputs
+                // $('input').prop( "disabled", false );
+            });
+        },
+        getTransactionStats : function () {
+            var self = this;
+
+            var data = {start_date: self.start_date, end_date: self.end_date};
+            data = JSON.stringify(data); // $.param({ 'id': ticket_id });
+
+            var stats = $.post("/admin/transactions/getTransactionStats", data);
+
+            stats.done(function (data) {
+                if (data.transaction_stats.length > 0)
+                    self.transaction_stats = data.transaction_stats[0];
+            });
+
+            stats.always(function () {
                 // // Reenable the inputs
                 // $('input').prop( "disabled", false );
             });
@@ -61,7 +109,74 @@ var Login = new Vue({
             var self = this;
 
             self.getTransactions();
+        },
+        openDateRange: function () {
+            var self = this;
+
+            $('#reportrange').daterangepicker({
+                startDate: self.start_date,
+                endDate: self.end_date,
+                ranges: {
+                    'Today': [moment(), moment()],
+                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                    'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
+                    '2016': [moment('2016-01-01'), moment('2016-12-31')],
+                    '2017': [moment('2017-01-01'), moment('2017-12-31')]
+                }
+            }, function(start, end, label) {
+                //formating date with moment JS
+                //console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
+
+                // self.start_date = start._d.getDate() + '/' + start._d.getMonth() + '/' + start._d.getFullYear();
+                // self.end_date =  end._d.getDate() + '/' + end._d.getMonth() + '/' + end._d.getFullYear();
+
+                self.start_date = start.format('L');
+                self.end_date =  end.format('L');
+
+                //$('#reportrange span').html(start.format('MMM D, YYYY') + ' - ' + end.format('MMM D, YYYY'));
+                $('#daterange').text('(' + start.format('MMM D, YYYY') + ' - ' + end.format('MMM D, YYYY') + ')');
+
+                self.getTransactions();
+                self.getTransactionStats();
+            });
         }
     }
 });
+
+
+// $(document).ready(function () {
+//     var start = moment().subtract(29, 'days');
+//     var end = moment();
+//
+//     function cb(start, end) {
+//         $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+//     }
+//
+//     $('#reportrange').daterangepicker({
+//         startDate: start,
+//         endDate: end,
+//         ranges: {
+//             'Today': [moment(), moment()],
+//             'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+//             'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+//             'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+//             'This Month': [moment().startOf('month'), moment().endOf('month')],
+//             'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+//         }
+//     }, cb);
+//
+//     cb(start, end);
+//
+//     $('#reportrange span').change(function () {
+//         Transactions.start_date = start.format('DD/MM/YYYY');
+//         Transactions.end_date = end.format('DD/MM/YYYY');
+//
+//         Transactions.getTransactions();
+//     });
+//
+//
+// });
 

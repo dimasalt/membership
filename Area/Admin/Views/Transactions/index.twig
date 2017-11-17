@@ -2,15 +2,18 @@
 
  {% block header_scripts %}
      <link rel="stylesheet" href="/Area/Admin/assets/css/checkbox.css" />
+     <link rel="stylesheet" href="/assets/elements/daterangepicker/daterangepicker.css" />
      <link rel="stylesheet" href="/assets/elements/toastr/toastr.min.css" />
+
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
  {% endblock %}
 
  {% block body %}
-     <div class="right_col" role="main" id="logs_panel" v-cloak style="height: 96vh;">
+     <div class="right_col" role="main" id="transactions_panel" v-cloak style="height: 96vh;">
          {#<div class="">#}
          <div class="page-title">
              <div class="title_left">
-                 <h3>System</h3>
+                 <h3>Transactions <span id="daterange"></span></h3>
              </div>
 
              <div class="title_right">
@@ -18,7 +21,7 @@
                      <div class="input-group">
                          <input type="text" class="form-control" placeholder="Search for..." v-model="search_by">
                          <span class="input-group-btn">
-                      <button class="btn btn-default" type="button" v-on:click="getLogs()">Go!</button>
+                      <button class="btn btn-default" type="button" v-on:click="getTransactions()">Go!</button>
                     </span>
                      </div>
                  </div>
@@ -27,70 +30,181 @@
 
          <div class="clearfix"></div>
 
+         <div class="row top_tiles">
+             <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                 <div class="tile-stats">
+                     <div class="icon"><i class="fa fa-sort-amount-desc"></i></div>
+                     <div class="count">{{ '{{ transaction_stats.transaction_count }}' }}</div>
+                     <h3>Transactions #</h3>
+                     <p>Total number of transactions</p>
+                 </div>
+             </div>
+             <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                 <div class="tile-stats">
+                     <div class="icon"><i class="fa fa-money"></i></div>
+                     <div class="count">{{ '{{ transaction_stats.sales_num }}' }}</div>
+                     <h3>
+                         Sales
+                     </h3>
+                     <p>Total Sales</p>
+                 </div>
+             </div>
+             <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                 <div class="tile-stats">
+                     <div class="icon"><i class="fa fa-thumbs-o-up"></i></div>
+                     <div class="count">${{ '{{ transaction_stats.sales }}' }}</div>
+                     <h3>Sales</h3>
+                     <p>Total sales</p>
+                 </div>
+             </div>
+             <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                 <div class="tile-stats">
+                     <div class="icon"><i class="fa fa-thumbs-o-down"></i></div>
+                     <div class="count">-${{ '{{ transaction_stats.refunds * (-1) }}' }}</div>
+                     <h3>Refunds</h3>
+                     <p>Total refunds</p>
+                 </div>
+             </div>
+         </div>
+
+         <div class="clearfix"></div>
+
          <div class="row">
-             <div class="col-md-12 col-sm-12 col-xs-12">
+             <div class="col-md-12">
                  <div class="x_panel">
                      <div class="x_title">
-                         <h2>Logs</h2>
+                         <h2>Transaction Summary </h2>
+                         {#<div class="filter">#}
+                             {#<div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">#}
+                                 {#<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>#}
+                                 {#<span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>#}
+                             {#</div>#}
+                         {#</div>#}
                          <ul class="nav navbar-right panel_toolbox">
                              <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                             <li><a><i class="fa fa-search"></i></a></li>
+                             <li>
+                                 <div id="reportrange">
+                                     <i class="fa fa-calendar" style="margin: 8px 5px 0 5px; color: #C5C7CB;" v-on:click="openDateRange()"></i>
+                                 </div>
+                             </li>
                              <li class="dropdown">
                                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-sort"></i></a>
                                  <ul class="dropdown-menu" role="menu">
                                      <li><a href="#" v-on:click="OrderBy('date')">Sort by date</a></li>
-                                     <li><a href="#" v-on:click="OrderBy('user')">Sort by user</a></li>
-                                     <li><a href="#" v-on:click="OrderBy('page')">Sort by page</a></li>
+                                     <li><a href="#" v-on:click="OrderBy('name')">Sort by name</a></li>
+                                     <li><a href="#" v-on:click="OrderBy('email')">Sort by email</a></li>
+                                     <li><a href="#" v-on:click="OrderBy('item_name')">Sort by item name</a></li>
                                  </ul>
                              </li>
-                             <li class="dropdown">
-                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-trash"></i></a>
-                                 <ul class="dropdown-menu" role="menu">
-                                     <li><a href="#" v-on:click="removeSelectedModal()">Remove Selected</a></li>
-                                     <li><a href="#" v-on:click="removeAllModal()">Remove All</a></li>
-                                 </ul>
-                             </li>
-                             {#<li><a v-on:click="removeAll()"><i class="fa fa-trash"></i></a></li>#}
                              <li><a class="close-link"><i class="fa fa-close"></i></a></li>
                          </ul>
                          <div class="clearfix"></div>
                      </div>
+                     <div class="x_content" style="height: 350px;">
+                         <div class="col-md-9 col-sm-12 col-xs-12">
+                             <div class="demo-container" style="height:320px">
+                                 <canvas id="chart_plot" class="demo-placeholder"></canvas>
+                             </div>
+                             <!-- tiles under the chart plot -->
+                             {#<div class="tiles">#}
+                                 {#<div class="col-md-4 tile">#}
+                                     {#<span>Total Sessions</span>#}
+                                        {#<h2>231,809</h2>#}
+                                        {#<span class="sparkline11 graph" style="height: 160px;">#}
+                                        {#<canvas width="200" height="60" style="display: inline-block; vertical-align: top; width: 94px; height: 30px;"></canvas>#}
+                                     {#</span>#}
+                                 {#</div>#}
+                                 {#<div class="col-md-4 tile">#}
+                                     {#<span>Total Revenue</span>#}
+                                         {#<h2>$231,809</h2>#}
+                                         {#<span class="sparkline22 graph" style="height: 160px;">#}
+                                         {#<canvas width="200" height="60" style="display: inline-block; vertical-align: top; width: 94px; height: 30px;"></canvas>#}
+                                     {#</span>#}
+                                 {#</div>#}
+                                 {#<div class="col-md-4 tile">#}
+                                     {#<span>Total Sessions</span>#}
+                                         {#<h2>231,809</h2>#}
+                                         {#<span class="sparkline11 graph" style="height: 160px;">#}
+                                        {#<canvas width="200" height="60" style="display: inline-block; vertical-align: top; width: 94px; height: 30px;"></canvas>#}
+                                     {#</span>#}
+                                 {#</div>#}
+                             {#</div>#}
 
+                         </div>
+
+                         <!-- today's transactions -->
+                         <div class="col-md-3 col-sm-12 col-xs-12">
+                             <div>
+                                 <div class="x_title">
+                                     <h2>Today Transactions</h2>
+                                     <div class="clearfix"></div>
+                                 </div>
+
+                                 <div class="alert alert-warning" v-if="today_transactions.length == 0">
+                                      No yet transactions for today
+                                 </div>
+
+                                 <ul class="list-unstyled top_profiles scroll-view">
+
+                                     <li class="media event" v-for="today_transac in today_transactions">
+                                         <a class="pull-left border-aero profile_thumb">
+                                             <i class="fa fa-user aero"></i>
+                                         </a>
+                                         <div class="media-body">
+                                             <div style="height: 10px;"></div>
+                                             <a class="title" href="#">{{ '{{ today_transac.fname }} {{ today_transac.lname }}' }}</a>
+                                             <p><strong>${{ '{{ today_transac.amount }}' }} </strong> {{ '{{ today_transac.item_name }}' }} </p>
+                                             {#<p> <small>12 Sales Today</small></p>#}
+                                         </div>
+                                     </li>
+                                 </ul>
+                             </div>
+                         </div>
+
+                     </div>
+                 </div>
+             </div>
+         </div>
+
+         <div class="clearfix"></div>
+
+         <!-- list of transactions for a selected date range -->
+         <div class="row" v-if="transactions.length > 0" style="margin-top: 25px;">
+             <div class="col-md-12 col-sm-12 col-xs-12">
+                 <div class="x_panel">
+                     <div class="x_title">
+                         <h2>Transaction records</h2>
+                         <div class="clearfix"></div>
+                     </div>
 
                      <div class="x_content">
 
-                         <div class="alert alert-success" role="alert" v-if="logs.length == 0">
-                             Sorry but there no logs at the moment
-                         </div>
-
-                         <div class="table-responsive" v-if="logs.length > 0">
+                         <div class="table-responsive">
                              <table class="table table-striped jambo_table">
                                  <thead>
                                  <tr class="headings">
-                                     <th>
-                                         <input type="checkbox" id="c1" name="cc1" class="bulk_action" v-model="all_selected" v-on:change="checkAll()" />
-                                         <label for="c1"><span></span></label>
-                                     </th>
-                                     <th class="column-title">User </th>
-                                     <th class="column-title">Email </th>
-                                     <th class="column-title">Page </th>
-                                     <th class="column-title">Action </th>
-                                     <th class="column-title">IP </th>
-                                     <th class="column-title">Date </th>
+                                     <th class="column-title">User</th>
+                                     <th class="column-title">Email</th>
+                                     <th class="column-title">Country</th>
+                                     <th class="column-title">Item</th>
+                                     <th class="column-title">$</th>
+                                     <th class="column-title">Merchant</th>
+                                     <th class="column-title">Status</th>
+                                     <th class="column-title">Date</th>
                                  </tr>
                                  </thead>
 
                                  <tbody>
-                                 <tr class="odd pointer" v-for="log in logs">
-                                     <td class="a-center ">
-                                         <input type="checkbox" :name="log.id" :id="log.id" v-model="log.selected" class="row_highlight" />
-                                         <label :for="log.id"><span></span></label>
-                                     </td>
-                                     <td class=" ">{{ '{{ log.first_name }} {{ log.last_name }}' }}</td>
-                                     <td class=" ">{{ '{{log.username}}' }}</td>
-                                     <td class=" ">{{ '{{ log.page }}' }} </td>
-                                     <td class=" ">{{ '{{ log.action }}' }} </td>
-                                     <td class=" ">{{ '{{ log.ip }}' }} </td>
-                                     <td class=" ">{{ '{{ log.created_at }}' }} </td>
+                                 <tr class="odd pointer" v-for="transaction in transactions">
+                                     <td class=" ">{{ '{{ transaction.fname }} {{ transaction.lname }}' }}</td>
+                                     <td class=" ">{{ '{{transaction.email}}' }}</td>
+                                     <td class=" ">{{ '{{ transaction.country }}' }} </td>
+                                     <td class=" ">{{ '{{ transaction.item_name }}' }} </td>
+                                     <td class=" ">{{ '{{ transaction.amount }}' }} </td>
+                                     <td class=" ">{{ '{{ transaction.payment_source }}' }} </td>
+                                     <td class=" ">{{ '{{ transaction.payment_status }}' }} </td>
+                                     <td class=" ">{{ '{{ transaction.created_at }}' }} </td>
                                  </tr>
                                  </tbody>
                              </table>
@@ -126,50 +240,89 @@
          </div>
          {#</div>#}
 
-         <!-- remove logs modal -->
-         <div class="modal fade" tabindex="-1" role="dialog" id="logs_selected_modal">
-             <div class="modal-dialog" role="document">
-                 <div class="modal-content">
-                     <div class="modal-header" style="background-color: #E74C3C; color: #F2F1EF">
-                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                         <h4 class="modal-title">Logs Removal...</h4>
-                     </div>
-                     <div class="modal-body">
-                         <p>You are about to remove membership activity logs. Please confirm your action.&hellip;</p>
-                     </div>
-                     <div class="modal-footer">
-                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                         <button type="button" class="btn btn-primary" data-dismiss="modal" v-on:click="removeSelected()" style="background-color: #E74C3C; color: #F2F1EF; border: none;">Remove Logs</button>
-                     </div>
-                 </div><!-- /.modal-content -->
-             </div><!-- /.modal-dialog -->
-         </div><!-- /.modal -->
-
-         <!-- remove logs modal -->
-         <div class="modal fade" tabindex="-1" role="dialog" id="logs_modal">
-             <div class="modal-dialog" role="document">
-                 <div class="modal-content">
-                     <div class="modal-header" style="background-color: #E74C3C; color: #F2F1EF">
-                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                         <h4 class="modal-title">Logs Removal...</h4>
-                     </div>
-                     <div class="modal-body">
-                         <p>You are about to remove membership activity logs. Please confirm your action.&hellip;</p>
-                     </div>
-                     <div class="modal-footer">
-                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                         <button type="button" class="btn btn-primary" data-dismiss="modal" v-on:click="removeAll()" style="background-color: #E74C3C; color: #F2F1EF; border: none;">Remove Logs</button>
-                     </div>
-                 </div><!-- /.modal-content -->
-             </div><!-- /.modal-dialog -->
-         </div><!-- /.modal -->
      </div>
  {% endblock %}
 
  {% block footer_scripts %}
 
      <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.1/vue.js" type="text/javascript" ></script>
+
+     <!-- date range picker -->
+     <script src="/assets/elements/daterangepicker/moment.min.js"></script>
+     <script src="/assets/elements/daterangepicker/daterangepicker.js"></script>
+
+     <!-- page functionality -->
      <script src="/Area/Admin/assets/js/vuejs/transactions/index.js"></script>
 
      <script src="/assets/elements/toastr/toastr.min.js"></script>
+
+     <script type="text/javascript">
+
+         var ctx = document.getElementById("chart_plot");
+
+         var data = {
+             labels: ["January", "February", "March", "April", "May", "June", "July"],
+             datasets: [
+                 {
+                     label: "Transactions",
+                     fill: false,
+                     lineTension: 0.1,
+                     fillColor: "rgba(220,220,220,0.2)",
+                     backgroundColor: "rgba(75,192,192,0.4)",
+                     borderColor: "rgba(75,192,192,1)",
+                     borderCapStyle: 'butt',
+                     borderDash: [],
+                     borderDashOffset: 0.0,
+                     borderJoinStyle: 'miter',
+                     pointBorderColor: "rgba(75,192,192,1)",
+                     pointBackgroundColor: "#fff",
+                     pointBorderWidth: 7,
+                     pointHoverRadius: 5,
+                     pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                     pointHoverBorderColor: "rgba(75,192,192,1)",
+                     pointHoverBorderWidth: 2,
+                     pointRadius: 1,
+                     pointHitRadius: 10,
+                     data: [65, 59, 80, 81, 56, 55, 40],
+                     spanGaps: false,
+                 },
+                 {
+                     label: "Refunds",
+                     fill: false,
+                     lineTension: 0.1,
+                     backgroundColor: "rgba(225,103,102,0.4)",
+                     borderColor: "rgba(225,103,102,1)",
+                     borderCapStyle: 'butt',
+                     borderDash: [],
+                     borderDashOffset: 0.0,
+                     borderJoinStyle: 'miter',
+                     pointBorderColor: "rgba(225,103,102,1)",
+                     pointBackgroundColor: "#fff",
+                     pointBorderWidth: 7,
+                     pointHoverRadius: 5,
+                     pointHoverBackgroundColor: "rgba(225,103,102,1)",
+                     pointHoverBorderColor: "rgba(225,103,102,1)",
+                     pointHoverBorderWidth: 2,
+                     pointRadius: 1,
+                     pointHitRadius: 10,
+                     data: [2, 76, 75, 60, 11, 40, 20],
+                     spanGaps: false,
+                 }
+             ]
+         };
+
+         var options = {
+             maintainAspectRatio: false,
+             responsive: true
+         };
+
+
+         var myLineChart = Chart.Line(ctx, {
+             data: data,
+             options: options,
+             tooltipTemplate: "<%if (label){ %><%= label.long %> : <%}%><%= value %>",
+         });
+     </script>
+
+
  {% endblock %}
