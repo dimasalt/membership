@@ -32,6 +32,14 @@ define('HOST_NAME', $_SERVER['HTTP_HOST']); //website name
 
 
 /***************************************
+ * Start Whoops error translator
+ ***************************************/
+$whoops = new \Whoops\Run;
+$whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
+$whoops->register();
+
+
+/***************************************
  * Checking user authentication
  * ************************************/
 $auth = new Membership\Libraries\Authentication();
